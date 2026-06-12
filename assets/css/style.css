@@ -1495,7 +1495,7 @@ footer {
     display: none;
   }
   .funcionalidades-grade {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 1fr;
   }
   .depoimentos-grade {
     grid-template-columns: 1fr;
