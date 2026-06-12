@@ -1,593 +1,941 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PeskPASS — Reservas para Pesqueiros</title>
-<meta name="description" content="PeskPASS é a plataforma de reservas para pesqueiros brasileiros. Donos gerenciam vagas e pacotes; pescadores reservam o espaço favorito no lago com antecedência. Sem filas, sem surpresas.">
-<link rel="canonical" href="https://peskpass.com.br/">
-<meta property="og:type" content="website">
-<meta property="og:title" content="PeskPASS — Reservas para Pesqueiros">
-<meta property="og:description" content="Organize seu pesqueiro, venda mais e fidelize pescadores com reservas online e pagamento antecipado.">
-<meta property="og:url" content="https://peskpass.com.br/">
-<meta property="og:locale" content="pt_BR">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="PeskPASS — Reservas para Pesqueiros">
-<meta name="twitter:description" content="Organize seu pesqueiro, venda mais e fidelize pescadores com reservas online e pagamento antecipado.">
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "SoftwareApplication",
-  "name": "PeskPASS",
-  "description": "Plataforma de reservas para pesqueiros brasileiros com mapa de lago interativo, pagamento antecipado e dashboard de gestão.",
-  "applicationCategory": "BusinessApplication",
-  "operatingSystem": "Web",
-  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "BRL" },
-  "url": "https://peskpass.com.br/",
-  "inLanguage": "pt-BR"
-}
-</script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=block">
-<link rel="stylesheet" href="assets/css/style.css">
-</head>
-<body>
-
-<!-- NAV -->
-<nav aria-label="Navegação principal">
-  <div class="nav-envoltorio">
-    <a href="#" class="nav-logo" aria-label="PeskPASS — página inicial">Pesk<span>PASS</span></a>
-    <ul class="nav-menu" role="list">
-      <li><a href="#oque">Solução</a></li>
-      <li><a href="#calculadora">Calculadora</a></li>
-      <li><a href="#como-funciona">Como funciona</a></li>
-      <li><a href="#funcionalidades">Funcionalidades</a></li>
-      <li><a href="#faq">FAQ</a></li>
-    </ul>
-    <div class="nav-direita">
-      <a href="#cadastro" class="nav-acao">Cadastrar pesqueiro</a>
-      <button class="nav-hamburguer" id="hamburguer" aria-label="Abrir menu" aria-expanded="false" aria-controls="menu-celular">
-        <span></span><span></span><span></span>
-      </button>
-    </div>
-  </div>
-  <div class="nav-celular" id="menu-celular" aria-hidden="true">
-    <a href="#oque" onclick="fecharMenu()">Solução</a>
-    <a href="#calculadora" onclick="fecharMenu()">Calculadora</a>
-    <a href="#como-funciona" onclick="fecharMenu()">Como funciona</a>
-    <a href="#funcionalidades" onclick="fecharMenu()">Recursos</a>
-    <a href="#faq" onclick="fecharMenu()">FAQ</a>
-    <a href="#cadastro" class="nav-acao" onclick="fecharMenu()">Cadastrar pesqueiro</a>
-  </div>
-</nav>
-
-<main>
-
-<!-- HERO -->
-<section class="heroi">
-  <div class="heroi-onda"></div>
-  <div class="heroi-onda2"></div>
-  <div class="heroi-conteudo">
-    <div class="heroi-texto">
-      <div class="heroi-emblema">Pré-lançamento aberto para donos de pesqueiro</div>
-      <h1>Chega de filas,<br>desistências<br>e <em>prejuízos</em>.</h1>
-      <p class="heroi-subtitulo">Reserva feita, <strong>pagamento garantido</strong>, dia planejado. Simples assim para você, dono de pesqueiro. Simples assim para o seu cliente, pescador.</p>
-      <div class="heroi-acoes">
-        <a href="#cadastro" class="btn-primario">Cadastrar meu pesqueiro →</a>
-        <a href="#como-funciona" class="btn-contorno">Ver como funciona</a>
-      </div>
-      <div class="heroi-estatisticas">
-        <div class="estatistica">
-          <div class="estatistica-numero">17.000+</div>
-          <div class="estatistica-rotulo">Pesqueiros no Brasil</div>
-        </div>
-        <div class="estatistica">
-          <div class="estatistica-numero">100</div>
-          <div class="estatistica-rotulo">Vagas no pré-lançamento</div>
-        </div>
-        <div class="estatistica">
-          <div class="estatistica-numero">5 min</div>
-          <div class="estatistica-rotulo">Para configurar e começar</div>
-        </div>
-      </div>
-    </div>
-    <div class="heroi-mockup">
-      <div class="heroi-carrossel" id="heroi-carrossel">
-        <div class="carrossel-trilho">
-          <img src="assets/images/hero-1.png" alt="Tela do PeskPASS — 1" class="carrossel-slide ativo" loading="eager">
-          <img src="assets/images/hero-2.png" alt="Tela do PeskPASS — 2" class="carrossel-slide" loading="lazy">
-          <img src="assets/images/hero-3.png" alt="Tela do PeskPASS — 3" class="carrossel-slide" loading="lazy">
-          <img src="assets/images/hero-4.png" alt="Tela do PeskPASS — 4" class="carrossel-slide" loading="lazy">
-          <img src="assets/images/hero-5.png" alt="Tela do PeskPASS — 5" class="carrossel-slide" loading="lazy">
-          <img src="assets/images/hero-6.png" alt="Tela do PeskPASS — 6" class="carrossel-slide" loading="lazy">
-          <img src="assets/images/hero-7.png" alt="Tela do PeskPASS — 7" class="carrossel-slide" loading="lazy">
-          <img src="assets/images/hero-8.png" alt="Tela do PeskPASS — 8" class="carrossel-slide" loading="lazy">
-          <img src="assets/images/hero-9.png" alt="Tela do PeskPASS — 9" class="carrossel-slide" loading="lazy">
-        </div>
-        <div class="carrossel-pontos" id="carrossel-pontos" aria-label="Navegar entre telas"></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- PROBLEMA -->
-<section class="problema" id="problema">
-  <div class="container revelar">
-    <p class="secao-rotulo">A realidade do pesqueiro</p>
-    <h2>A desorganização tem preço.<br>E você é quem paga.</h2>
-    <p class="secao-sub">Sem reserva, o dia começa no improviso. E quando o pescador chega e encontra fila, lotação e caos — a frustração dele vira o seu problema.</p>
-    <div class="problema-grid">
-      <div class="problema-card revelar">
-        <div class="problema-icon" aria-hidden="true"><span class="material-symbols-rounded">warning</span></div>
-        <h3>Fila e confusão na entrada</h3>
-        <p>Todo mundo chega ao mesmo tempo, sem controle de horário. O dia começa tenso para você e para o cliente.</p>
-      </div>
-      <div class="problema-card revelar">
-        <div class="problema-icon" aria-hidden="true"><span class="material-symbols-rounded">event_busy</span></div>
-        <h3>Vaga perdida sem aviso</h3>
-        <p>O pescador confirma e não aparece. Você perdeu a vaga, preparou a estrutura e não recebeu nada.</p>
-      </div>
-      <div class="problema-card revelar">
-        <div class="problema-icon" aria-hidden="true"><span class="material-symbols-rounded">trending_down</span></div>
-        <h3>Receita imprevisível</h3>
-        <p>Sem reserva antecipada, você nunca sabe quantas pessoas vêm no sábado. Sem previsão, sem planejamento.</p>
-      </div>
-      <div class="problema-card revelar">
-        <div class="problema-icon" aria-hidden="true"><span class="material-symbols-rounded">chat_bubble</span></div>
-        <h3>Atendimento repetitivo</h3>
-        <p>Horário, regras, o que pode trazer, quanto custa — as mesmas perguntas chegam todo dia no seu WhatsApp.</p>
-      </div>
-      <div class="problema-card revelar">
-        <div class="problema-icon" aria-hidden="true"><span class="material-symbols-rounded">person_search</span></div>
-        <h3>Sem dados de clientes</h3>
-        <p>Quem são seus melhores clientes? Quantas vezes voltaram? Você não sabe — e não fideliza ninguém.</p>
-      </div>
-      <div class="problema-card revelar">
-        <div class="problema-icon" aria-hidden="true"><span class="material-symbols-rounded">sentiment_very_dissatisfied</span></div>
-        <h3>Conflitos e reclamações</h3>
-        <p>Sem regras claras antes da chegada, qualquer desentendimento na hora vira problema seu.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- O QUE É -->
-<section class="oque" id="oque">
-  <div class="container revelar">
-    <p class="secao-rotulo" style="color:var(--aqua)">Criado por pescadores para pesqueiros</p>
-    <h2>Um sistema feito sob medida para a<br> realidade do pesqueiro brasileiro</h2>
-    <p class="secao-sub">Reservas online e pagamento antecipado — sem instalação, sem complicação tecnológica.</p>
-    <div class="oque-grid">
-      <div class="oque-card revelar">
-        <div class="oque-card-icon" aria-hidden="true"><span class="material-symbols-rounded">storefront</span></div>
-        <h3>Para você, dono de pesqueiro</h3>
-        <p>Painel completo para ver reservas do dia, configurar o mapa do lago, criar pacotes e acompanhar receita em tempo real. Você sabe quem vem, quando vem — e o dinheiro já está na conta antes de abrir o portão.</p>
-      </div>
-      <div class="oque-card revelar">
-        <div class="oque-card-icon" aria-hidden="true"><span class="material-symbols-rounded">water</span></div>
-        <h3>Seu cliente chega pronto para pescar</h3>
-        <p>O pescador reserva o espaço favorito, escolhe o pacote e paga antes de sair de casa. Chega no horário desejado, sem fila, sem discussão na entrada e sem surpresa para você.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- CALCULADORA -->
-<section class="calculadora" id="calculadora">
-  <div class="container revelar">
-    <p class="secao-rotulo">Veja o potencial do seu pesqueiro</p>
-    <h2>Quanto você pode faturar<br> com reservas antecipadas?</h2>
-    <p class="secao-sub">Preencha com o que você já sabe e veja o potencial máximo do seu pesqueiro com lotação completa.</p>
-    <div class="calc-envoltorio">
-      <div class="calc-grade">
-        <div class="calc-grupo">
-          <label for="calc-vagas">Número de vagas</label>
-          <input id="calc-vagas" inputmode="numeric">
-          <span class="calc-erro" id="erro-vagas"></span>
-        </div>
-        <div class="calc-grupo">
-          <label for="calc-valor">Valor da entrada (R$)</label>
-          <input id="calc-valor" inputmode="decimal">
-          <span class="calc-erro" id="erro-valor"></span>
-        </div>
-        <div class="calc-grupo">
-          <label for="calc-dias">Dias abertos por semana</label>
-          <input id="calc-dias" inputmode="numeric">
-          <span class="calc-erro" id="erro-dias"></span>
-        </div>
-      </div>
-      <button class="calc-btn" onclick="calcularPotencial()">Ver o potencial do meu pesqueiro</button>
-      <div class="calc-resultado" id="calc-resultado">
-        <div class="calc-resultado-valores">
-          <div>
-            <div class="calc-valor-perdido" id="calc-valor-dia" style="color:var(--aqua)">R$ 0</div>
-            <div class="calc-valor-texto">por dia</div>
-          </div>
-          <div class="calc-separador">·</div>
-          <div>
-            <div class="calc-valor-perdido" id="calc-valor-semana" style="color:var(--lake)">R$ 0</div>
-            <div class="calc-valor-texto">por semana</div>
-          </div>
-          <div class="calc-separador">·</div>
-          <div>
-            <div class="calc-valor-perdido" id="calc-valor-mes" style="color:var(--water)">R$ 0</div>
-            <div class="calc-valor-texto">por mês</div>
-          </div>
-        </div>
-        <div class="calc-valor-texto" style="margin-top:0.75rem">Esse é o potencial máximo com lotação completa. Com reservas pagas antecipadamente, o PeskPASS te aproxima dele — e o dinheiro entra antes de qualquer pescador chegar.</div>
-        <div class="calc-cta">→ <a href="#cadastro" style="color:var(--lake);font-weight:600;text-decoration:none">Quero cadastrar meu pesqueiro</a></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- COMO FUNCIONA -->
-<section class="como" id="como-funciona">
-  <div class="container revelar">
-    <p class="secao-rotulo">Simples assim</p>
-    <h2>Uma plataforma,<br>dois caminhos</h2>
-    <p class="secao-sub">Cinco minutos para você configurar. Zero complicação para o pescador reservar.</p>
-    <div class="como-grid">
-      <div class="como-trilha trilha-dono revelar">
-        <div class="trilha-icone" aria-hidden="true"><span class="material-symbols-rounded">storefront</span></div>
-        <div class="trilha-titulo">Para o pesqueiro</div>
-        <ol class="passos">
-          <li class="passo"><div class="passo-numero">1</div><div class="passo-texto"><strong>Cadastra o pesqueiro</strong> com fotos, descrição e localização</div></li>
-          <li class="passo"><div class="passo-numero">2</div><div class="passo-texto"><strong>Demarca os espaços</strong> no mapa interativo do lago</div></li>
-          <li class="passo"><div class="passo-numero">3</div><div class="passo-texto"><strong>Cria pacotes</strong> — café da manhã, almoço, combos, etc</div></li>
-          <li class="passo"><div class="passo-numero">4</div><div class="passo-texto"><strong>Recebe reservas e pagamentos</strong> antecipados pelo painel</div></li>
-          <li class="passo"><div class="passo-numero">5</div><div class="passo-texto"><strong>Compartilha o link do PeskPASS</strong> no seu Site, Instagram e WhatsApp e seus clientes reservam direto por lá</div></li>
-        </ol>
-      </div>
-      <div class="como-trilha trilha-pescador revelar">
-        <div class="trilha-icone" aria-hidden="true"><span class="material-symbols-rounded">water</span></div>
-        <div class="trilha-titulo">Para o pescador</div>
-        <ol class="passos">
-          <li class="passo"><div class="passo-numero">1</div><div class="passo-texto"><strong>Acessa o link do PeskPASS</strong> que você compartilhou</div></li>
-          <li class="passo"><div class="passo-numero">2</div><div class="passo-texto"><strong>Escolhe a vaga</strong> no mapa do lago e o pacote desejado</div></li>
-          <li class="passo"><div class="passo-numero">3</div><div class="passo-texto"><strong>Paga e confirma</strong> — vaga assegurada, sem surpresas na chegada</div></li>
-        </ol>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ANTES / DEPOIS -->
-<section class="antesdepois" id="transformacao">
-  <div class="container revelar">
-    <p class="secao-rotulo">A transformação</p>
-    <h2>Antes e depois<br>do PeskPASS</h2>
-    <div class="antesdepois-grade">
-      <div class="antesdepois-col antesdepois-antes revelar">
-        <div class="antesdepois-cabecalho">
-          <span class="antesdepois-icone" aria-hidden="true"><span class="material-symbols-rounded">sentiment_dissatisfied</span></span>
-          <h3>Sem PeskPASS</h3>
-        </div>
-        <ul>
-          <li>Controle manual das vagas</li>
-          <li>Fila e confusão na entrada</li>
-          <li>Atendimento repetitivo no WhatsApp</li>
-          <li>Vagas perdidas sem pagamento</li>
-          <li>Ocupação desorganizada</li>
-          <li>Pescadores desconhecem as regras</li>
-          <li>Conflitos e reclamações</li>
-          <li>Pescador frustrado que não volta</li>
-          <li>Sem dados dos clientes</li>
-          <li>Receita imprevisível</li>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PeskPASS — Reservas para pesqueiros</title>
+    <meta
+      name="description"
+      content="PeskPASS é a plataforma de reservas para pesqueiros brasileiros. Donos gerenciam vagas e pacotes; pescadores reservam o espaço favorito no lago com antecedência. Sem filas, sem surpresas."
+    />
+    <link rel="canonical" href="https://peskpass.com.br/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="PeskPASS — Reservas para pesqueiros" />
+    <meta
+      property="og:description"
+      content="Organize seu pesqueiro, venda mais e fidelize pescadores com reservas online e pagamento antecipado."
+    />
+    <meta property="og:url" content="https://peskpass.com.br/" />
+    <meta property="og:locale" content="pt_BR" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="PeskPASS — Reservas para pesqueiros" />
+    <meta
+      name="twitter:description"
+      content="Organize seu pesqueiro, venda mais e fidelize pescadores com reservas online e pagamento antecipado."
+    />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "PeskPASS",
+        "description": "Plataforma de reservas para pesqueiros brasileiros com mapa de lago interativo, pagamento antecipado e dashboard de gestão.",
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "Web",
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "BRL" },
+        "url": "https://peskpass.com.br/",
+        "inLanguage": "pt-BR"
+      }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=block"
+    />
+    <link rel="stylesheet" href="assets/css/style.css" />
+  </head>
+  <body>
+    <!-- NAV -->
+    <nav aria-label="Navegação principal">
+      <div class="nav-envoltorio">
+        <a href="#" class="nav-logo" aria-label="PeskPASS — página inicial"
+          >Pesk<span>PASS</span></a
+        >
+        <ul class="nav-menu" role="list">
+          <li><a href="#oque">Solução</a></li>
+          <li><a href="#calculadora">Calculadora</a></li>
+          <li><a href="#como-funciona">Como funciona</a></li>
+          <li><a href="#funcionalidades">Funcionalidades</a></li>
+          <li><a href="#faq">FAQ</a></li>
         </ul>
-      </div>
-      <div class="antesdepois-col antesdepois-depois revelar">
-        <div class="antesdepois-cabecalho">
-          <span class="antesdepois-icone" aria-hidden="true"><span class="material-symbols-rounded">check_circle</span></span>
-          <h3>Com PeskPASS</h3>
-        </div>
-        <ul>
-          <li>Reservas organizadas por horário</li>
-          <li>Pagamento garantido antes de abrir o portão</li>
-          <li>Informações centralizadas na plataforma</li>
-          <li>Cliente chega no horário marcado</li>
-          <li>Ocupação controlada em tempo real</li>
-          <li>Regras exibidas antes da reserva</li>
-          <li>Menos conflitos e reclamações</li>
-          <li>Base de clientes própria</li>
-          <li>Previsão financeira real</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- FUNCIONALIDADES -->
-<section class="funcionalidades-secao" id="funcionalidades">
-  <div class="container revelar">
-    <p class="secao-rotulo" style="color:var(--aqua)">Tudo que você precisa</p>
-    <h2 style="color:var(--white)">Funcionalidades</h2>
-    <!-- Mapa do lago -->
-    <div class="mapa-envoltorio revelar" style="margin-top:3rem">
-      <img src="assets/images/mapa-lago.png" alt="Mapa do lago no PeskPASS" class="mapa-imagem">
-      <div class="mapa-info">
-        <p class="secao-rotulo" style="color:var(--aqua)">Funcionalidade principal</p>
-        <p style="font-family:'Plus Jakarta Sans',sans-serif;font-size:1.4rem;font-weight:700;color:var(--white);margin-bottom:1rem;line-height:1.5">Mapa do Lago</p>
-        <p>A funcionalidade central do PeskPASS: cada pesqueiro cadastra o desenho do seu lago com todos os espaços demarcados. O pescador vê em tempo real quais vagas estão livres e reserva a que preferir.</p>
-        <p>
-          Lugar favorito ou cantinho da sorte?<br>
-          Tudo reservável com antecedência.
-        </p>
-        <div class="mapa-legenda">
-          <div class="legenda-item"><div class="legenda-ponto ponto-livre"></div> Vaga disponível</div>
-          <div class="legenda-item"><div class="legenda-ponto ponto-ocupado"></div> Vaga ocupada</div>
-          <div class="legenda-item"><div class="legenda-ponto ponto-selecionado"></div> Vaga selecionada</div>
+        <div class="nav-direita">
+          <a href="#cadastro" class="nav-acao">Cadastrar pesqueiro</a>
+          <button
+            class="nav-hamburguer"
+            id="hamburguer"
+            aria-label="Abrir menu"
+            aria-expanded="false"
+            aria-controls="menu-celular"
+          >
+            <span></span><span></span><span></span>
+          </button>
         </div>
       </div>
-    </div>
-    <p class="secao-sub" style="margin-top:3rem">Uma plataforma completa, pensada para a realidade dos pesqueiros brasileiros.</p>
-    <div class="funcionalidades-grade">
-      <article class="funcionalidade-card revelar">
-        <div class="funcionalidade-icone" aria-hidden="true"><span class="material-symbols-rounded">map</span></div>
-        <h3>Mapa interativo do lago</h3>
-        <p>Cadastre seus espaços com localização exata. Pescadores escolhem onde sentar antes de sair de casa.</p>
-      </article>
-      <article class="funcionalidade-card revelar">
-        <div class="funcionalidade-icone" aria-hidden="true"><span class="material-symbols-rounded">inventory_2</span></div>
-        <h3>Pacotes personalizados</h3>
-        <p>Monte combos de day use com café, almoço, kit de pesca ou qualquer serviço do seu pesqueiro.</p>
-      </article>
-      <article class="funcionalidade-card revelar">
-        <div class="funcionalidade-icone" aria-hidden="true"><span class="material-symbols-rounded">payments</span></div>
-        <h3>Pagamento antecipado</h3>
-        <p>Receba antes mesmo do pescador chegar. Sem inadimplência, sem maquininha na entrada.</p>
-      </article>
-      <article class="funcionalidade-card revelar">
-        <div class="funcionalidade-icone" aria-hidden="true"><span class="material-symbols-rounded">bar_chart</span></div>
-        <h3>Painel completo</h3>
-        <p>Veja reservas do dia, receita do mês, taxa de ocupação e histórico detalhado em tempo real.</p>
-      </article>
-      <article class="funcionalidade-card revelar">
-        <div class="funcionalidade-icone" aria-hidden="true"><span class="material-symbols-rounded">group</span></div>
-        <h3>Histórico de clientes</h3>
-        <p>Saiba quem são seus clientes mais fiéis e quanto cada um já gastou no seu pesqueiro.</p>
-      </article>
-      <article class="funcionalidade-card revelar">
-        <div class="funcionalidade-icone" aria-hidden="true"><span class="material-symbols-rounded">share</span></div>
-        <h3>Link compartilhável</h3>
-        <p>Cole o link de reservas no seu Instagram, WhatsApp e site. Seus seguidores reservam direto.</p>
-      </article>
-      <article class="funcionalidade-card revelar">
-        <div class="funcionalidade-icone" aria-hidden="true"><span class="material-symbols-rounded">travel_explore</span></div>
-        <h3>Descoberta na plataforma</h3>
-        <p>Pescadores do Brasil todo encontram seu pesqueiro no PeskPASS com filtros de cidade, estrutura e avaliação.</p>
-      </article>
-      <article class="funcionalidade-card revelar">
-        <div class="funcionalidade-icone" aria-hidden="true"><span class="material-symbols-rounded">open_in_browser</span></div>
-        <h3>Web App</h3>
-        <p>Funciona direto no navegador do celular, sem precisar instalar nada. O pescador reserva em segundos, a qualquer hora.</p>
-      </article>
-    </div>
-  </div>
-</section>
+      <div class="nav-celular" id="menu-celular" aria-hidden="true">
+        <a href="#oque" onclick="fecharMenu()">Solução</a>
+        <a href="#calculadora" onclick="fecharMenu()">Calculadora</a>
+        <a href="#como-funciona" onclick="fecharMenu()">Como funciona</a>
+        <a href="#funcionalidades" onclick="fecharMenu()">Recursos</a>
+        <a href="#faq" onclick="fecharMenu()">FAQ</a>
+        <a href="#cadastro" class="nav-acao" onclick="fecharMenu()">Cadastrar pesqueiro</a>
+      </div>
+    </nav>
 
-<!-- DEPOIMENTOS -->
-<section class="depoimentos" id="depoimentos">
-  <div class="container revelar">
-    <p class="secao-rotulo">O que pescadores dizem por aí</p>
-    <h2>Os pescadores já estão<br>pedindo isso — faz tempo.</h2>
-    <p class="secao-sub">Coletamos relatos de grupos de pesca esportiva e fóruns online. Esses não são clientes do PeskPASS — são pescadores descrevendo a realidade dos pesqueiros hoje. Seu pesqueiro pode ser a resposta que eles procuram.</p>
-    <div class="depoimentos-grade">
-      <article class="depoimento-card revelar">
-        <div class="depoimento-relato-badge">Grupo de pesca no Facebook</div>
-        <blockquote class="depoimento-texto">&ldquo;Rodava quase duas horas para chegar no meu pesqueiro favorito. Nas últimas vezes, a fila na entrada já estava tão grande que o desânimo começava antes mesmo de entrar. Depois de tantos anos indo quase todo fim de semana, acabei perdendo a vontade.&rdquo;</blockquote>
-        <footer class="depoimento-autor">
-          <div class="depoimento-avatar" aria-hidden="true">RM</div>
+    <main>
+      <!-- HERO -->
+      <section class="heroi">
+        <div class="heroi-onda"></div>
+        <div class="heroi-onda2"></div>
+        <div class="heroi-conteudo">
+          <div class="heroi-texto">
+            <div class="heroi-emblema">Pré-lançamento aberto para donos de pesqueiro</div>
+            <h1>Chega de filas,<br />desistências<br />e <em>prejuízos</em>.</h1>
+            <p class="heroi-subtitulo">
+              Reserva feita, <strong>pagamento garantido</strong>, dia planejado. Simples assim para
+              você, dono de pesqueiro. Simples assim para o seu cliente, pescador.
+            </p>
+            <div class="heroi-acoes">
+              <a href="#cadastro" class="btn-primario">Cadastrar meu pesqueiro →</a>
+              <a href="#como-funciona" class="btn-contorno">Ver como funciona</a>
+            </div>
+            <div class="heroi-estatisticas">
+              <div class="estatistica">
+                <div class="estatistica-numero">17.000+</div>
+                <div class="estatistica-rotulo">Pesqueiros no Brasil</div>
+              </div>
+              <div class="estatistica">
+                <div class="estatistica-numero">100</div>
+                <div class="estatistica-rotulo">Vagas no pré-lançamento</div>
+              </div>
+              <div class="estatistica">
+                <div class="estatistica-numero">5 min</div>
+                <div class="estatistica-rotulo">Para configurar e começar</div>
+              </div>
+            </div>
+          </div>
+          <div class="heroi-mockup">
+            <div class="heroi-carrossel" id="heroi-carrossel">
+              <div class="carrossel-trilho">
+                <img
+                  src="assets/images/hero-1.png"
+                  alt="Tela do PeskPASS — 1"
+                  class="carrossel-slide ativo"
+                  loading="eager"
+                />
+                <img
+                  src="assets/images/hero-2.png"
+                  alt="Tela do PeskPASS — 2"
+                  class="carrossel-slide"
+                  loading="lazy"
+                />
+                <img
+                  src="assets/images/hero-3.png"
+                  alt="Tela do PeskPASS — 3"
+                  class="carrossel-slide"
+                  loading="lazy"
+                />
+                <img
+                  src="assets/images/hero-4.png"
+                  alt="Tela do PeskPASS — 4"
+                  class="carrossel-slide"
+                  loading="lazy"
+                />
+                <img
+                  src="assets/images/hero-5.png"
+                  alt="Tela do PeskPASS — 5"
+                  class="carrossel-slide"
+                  loading="lazy"
+                />
+                <img
+                  src="assets/images/hero-6.png"
+                  alt="Tela do PeskPASS — 6"
+                  class="carrossel-slide"
+                  loading="lazy"
+                />
+                <img
+                  src="assets/images/hero-7.png"
+                  alt="Tela do PeskPASS — 7"
+                  class="carrossel-slide"
+                  loading="lazy"
+                />
+                <img
+                  src="assets/images/hero-8.png"
+                  alt="Tela do PeskPASS — 8"
+                  class="carrossel-slide"
+                  loading="lazy"
+                />
+                <img
+                  src="assets/images/hero-9.png"
+                  alt="Tela do PeskPASS — 9"
+                  class="carrossel-slide"
+                  loading="lazy"
+                />
+              </div>
+              <div
+                class="carrossel-pontos"
+                id="carrossel-pontos"
+                aria-label="Navegar entre telas"
+              ></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PROBLEMA -->
+      <section class="problema" id="problema">
+        <div class="container revelar">
+          <p class="secao-rotulo">A realidade do pesqueiro</p>
+          <h2>A desorganização tem preço.<br />E você é quem paga.</h2>
+          <p class="secao-sub">
+            Sem reserva, o dia começa no improviso. E quando o pescador chega e encontra fila,
+            lotação e caos — a frustração dele vira o seu problema.
+          </p>
+          <div class="problema-grid">
+            <div class="problema-card revelar">
+              <div class="problema-icon" aria-hidden="true">
+                <span class="material-symbols-rounded">warning</span>
+              </div>
+              <h3>Fila e confusão na entrada</h3>
+              <p>
+                Todo mundo chega ao mesmo tempo, sem controle de horário. O dia começa tenso para
+                você e para o cliente.
+              </p>
+            </div>
+            <div class="problema-card revelar">
+              <div class="problema-icon" aria-hidden="true">
+                <span class="material-symbols-rounded">event_busy</span>
+              </div>
+              <h3>Vaga perdida sem aviso</h3>
+              <p>
+                O pescador confirma e não aparece. Você perdeu a vaga, preparou a estrutura e não
+                recebeu nada.
+              </p>
+            </div>
+            <div class="problema-card revelar">
+              <div class="problema-icon" aria-hidden="true">
+                <span class="material-symbols-rounded">trending_down</span>
+              </div>
+              <h3>Receita imprevisível</h3>
+              <p>
+                Sem reserva antecipada, você nunca sabe quantas pessoas vêm no sábado. Sem previsão,
+                sem planejamento.
+              </p>
+            </div>
+            <div class="problema-card revelar">
+              <div class="problema-icon" aria-hidden="true">
+                <span class="material-symbols-rounded">chat_bubble</span>
+              </div>
+              <h3>Atendimento repetitivo</h3>
+              <p>
+                Horário, regras, o que pode trazer, quanto custa — as mesmas perguntas chegam todo
+                dia no seu WhatsApp.
+              </p>
+            </div>
+            <div class="problema-card revelar">
+              <div class="problema-icon" aria-hidden="true">
+                <span class="material-symbols-rounded">person_search</span>
+              </div>
+              <h3>Sem dados de clientes</h3>
+              <p>
+                Quem são seus melhores clientes? Quantas vezes voltaram? Você não sabe — e não
+                fideliza ninguém.
+              </p>
+            </div>
+            <div class="problema-card revelar">
+              <div class="problema-icon" aria-hidden="true">
+                <span class="material-symbols-rounded">sentiment_very_dissatisfied</span>
+              </div>
+              <h3>Conflitos e reclamações</h3>
+              <p>
+                Sem regras claras antes da chegada, qualquer desentendimento na hora vira problema
+                seu.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- O QUE É -->
+      <section class="oque" id="oque">
+        <div class="container revelar">
+          <p class="secao-rotulo" style="color: var(--aqua)">
+            Criado por pescadores para pesqueiros
+          </p>
+          <h2>
+            Um sistema feito sob medida para a<br />
+            realidade do pesqueiro brasileiro
+          </h2>
+          <p class="secao-sub">
+            Reservas online e pagamento antecipado — sem instalação, sem complicação tecnológica.
+          </p>
+          <div class="oque-grid">
+            <div class="oque-card revelar">
+              <div class="oque-card-icon" aria-hidden="true">
+                <span class="material-symbols-rounded">storefront</span>
+              </div>
+              <h3>Para você, dono de pesqueiro</h3>
+              <p>
+                Painel completo para ver reservas do dia, configurar o mapa do lago, criar pacotes e
+                acompanhar receita em tempo real. Você sabe quem vem, quando vem — e o dinheiro já
+                está na conta antes de abrir o portão.
+              </p>
+            </div>
+            <div class="oque-card revelar">
+              <div class="oque-card-icon" aria-hidden="true">
+                <span class="material-symbols-rounded">water</span>
+              </div>
+              <h3>Seu cliente chega pronto para pescar</h3>
+              <p>
+                O pescador reserva o espaço favorito, escolhe o pacote e paga antes de sair de casa.
+                Chega no horário desejado, sem fila, sem discussão na entrada e sem surpresa para
+                você.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CALCULADORA -->
+      <section class="calculadora" id="calculadora">
+        <div class="container revelar">
+          <p class="secao-rotulo">Veja o potencial do seu pesqueiro</p>
+          <h2>
+            Quanto você pode faturar<br />
+            com reservas antecipadas?
+          </h2>
+          <p class="secao-sub">
+            Preencha com o que você já sabe e veja o potencial máximo do seu pesqueiro com lotação
+            completa.
+          </p>
+          <div class="calc-envoltorio">
+            <div class="calc-grade">
+              <div class="calc-grupo">
+                <label for="calc-vagas">Número de vagas</label>
+                <input id="calc-vagas" inputmode="numeric" />
+                <span class="calc-erro" id="erro-vagas"></span>
+              </div>
+              <div class="calc-grupo">
+                <label for="calc-valor">Valor da entrada (R$)</label>
+                <input id="calc-valor" inputmode="decimal" />
+                <span class="calc-erro" id="erro-valor"></span>
+              </div>
+              <div class="calc-grupo">
+                <label for="calc-dias">Dias abertos por semana</label>
+                <input id="calc-dias" inputmode="numeric" />
+                <span class="calc-erro" id="erro-dias"></span>
+              </div>
+            </div>
+            <button class="calc-btn" onclick="calcularPotencial()">
+              Ver o potencial do meu pesqueiro
+            </button>
+            <div class="calc-resultado" id="calc-resultado">
+              <div class="calc-resultado-valores">
+                <div>
+                  <div class="calc-valor-perdido" id="calc-valor-dia" style="color: var(--aqua)">
+                    R$ 0
+                  </div>
+                  <div class="calc-valor-texto">por dia</div>
+                </div>
+                <div class="calc-separador">·</div>
+                <div>
+                  <div class="calc-valor-perdido" id="calc-valor-semana" style="color: var(--lake)">
+                    R$ 0
+                  </div>
+                  <div class="calc-valor-texto">por semana</div>
+                </div>
+                <div class="calc-separador">·</div>
+                <div>
+                  <div class="calc-valor-perdido" id="calc-valor-mes" style="color: var(--water)">
+                    R$ 0
+                  </div>
+                  <div class="calc-valor-texto">por mês</div>
+                </div>
+              </div>
+              <div class="calc-valor-texto" style="margin-top: 0.75rem">
+                Esse é o potencial máximo com lotação completa. Com reservas pagas antecipadamente,
+                o PeskPASS te aproxima dele — e o dinheiro entra antes de qualquer pescador chegar.
+              </div>
+              <div class="calc-cta">
+                →
+                <a
+                  href="#cadastro"
+                  style="color: var(--lake); font-weight: 600; text-decoration: none"
+                  >Quero cadastrar meu pesqueiro</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- COMO FUNCIONA -->
+      <section class="como" id="como-funciona">
+        <div class="container revelar">
+          <p class="secao-rotulo">Simples assim</p>
+          <h2>Uma plataforma,<br />dois caminhos</h2>
+          <p class="secao-sub">
+            Cinco minutos para você configurar. Zero complicação para o pescador reservar.
+          </p>
+          <div class="como-grid">
+            <div class="como-trilha trilha-dono revelar">
+              <div class="trilha-icone" aria-hidden="true">
+                <span class="material-symbols-rounded">storefront</span>
+              </div>
+              <div class="trilha-titulo">Para o pesqueiro</div>
+              <ol class="passos">
+                <li class="passo">
+                  <div class="passo-numero">1</div>
+                  <div class="passo-texto">
+                    <strong>Cadastra o pesqueiro</strong> com fotos, descrição e localização
+                  </div>
+                </li>
+                <li class="passo">
+                  <div class="passo-numero">2</div>
+                  <div class="passo-texto">
+                    <strong>Demarca os espaços</strong> no mapa interativo do lago
+                  </div>
+                </li>
+                <li class="passo">
+                  <div class="passo-numero">3</div>
+                  <div class="passo-texto">
+                    <strong>Cria pacotes</strong> — café da manhã, almoço, combos, etc
+                  </div>
+                </li>
+                <li class="passo">
+                  <div class="passo-numero">4</div>
+                  <div class="passo-texto">
+                    <strong>Recebe reservas e pagamentos</strong> antecipados pelo painel
+                  </div>
+                </li>
+                <li class="passo">
+                  <div class="passo-numero">5</div>
+                  <div class="passo-texto">
+                    <strong>Compartilha o link do PeskPASS</strong> no seu Site, Instagram e
+                    WhatsApp e seus clientes reservam direto por lá
+                  </div>
+                </li>
+              </ol>
+            </div>
+            <div class="como-trilha trilha-pescador revelar">
+              <div class="trilha-icone" aria-hidden="true">
+                <span class="material-symbols-rounded">water</span>
+              </div>
+              <div class="trilha-titulo">Para o pescador</div>
+              <ol class="passos">
+                <li class="passo">
+                  <div class="passo-numero">1</div>
+                  <div class="passo-texto">
+                    <strong>Acessa o link do PeskPASS</strong> que você compartilhou
+                  </div>
+                </li>
+                <li class="passo">
+                  <div class="passo-numero">2</div>
+                  <div class="passo-texto">
+                    <strong>Escolhe a vaga</strong> no mapa do lago e o pacote desejado
+                  </div>
+                </li>
+                <li class="passo">
+                  <div class="passo-numero">3</div>
+                  <div class="passo-texto">
+                    <strong>Paga e confirma</strong> — vaga assegurada, sem surpresas na chegada
+                  </div>
+                </li>
+              </ol>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ANTES / DEPOIS -->
+      <section class="antesdepois" id="transformacao">
+        <div class="container revelar">
+          <p class="secao-rotulo">A transformação</p>
+          <h2>Antes e depois<br />do PeskPASS</h2>
+          <div class="antesdepois-grade">
+            <div class="antesdepois-col antesdepois-antes revelar">
+              <div class="antesdepois-cabecalho">
+                <span class="antesdepois-icone" aria-hidden="true"
+                  ><span class="material-symbols-rounded">sentiment_dissatisfied</span></span
+                >
+                <h3>Sem PeskPASS</h3>
+              </div>
+              <ul>
+                <li>Controle manual das vagas</li>
+                <li>Fila e confusão na entrada</li>
+                <li>Atendimento repetitivo no WhatsApp</li>
+                <li>Vagas perdidas sem pagamento</li>
+                <li>Ocupação desorganizada</li>
+                <li>Pescadores desconhecem as regras</li>
+                <li>Conflitos e reclamações</li>
+                <li>Pescador frustrado que não volta</li>
+                <li>Sem dados dos clientes</li>
+                <li>Receita imprevisível</li>
+              </ul>
+            </div>
+            <div class="antesdepois-col antesdepois-depois revelar">
+              <div class="antesdepois-cabecalho">
+                <span class="antesdepois-icone" aria-hidden="true"
+                  ><span class="material-symbols-rounded">check_circle</span></span
+                >
+                <h3>Com PeskPASS</h3>
+              </div>
+              <ul>
+                <li>Reservas organizadas por horário</li>
+                <li>Pagamento garantido antes de abrir o portão</li>
+                <li>Informações centralizadas na plataforma</li>
+                <li>Cliente chega no horário marcado</li>
+                <li>Ocupação controlada em tempo real</li>
+                <li>Regras exibidas antes da reserva</li>
+                <li>Menos conflitos e reclamações</li>
+                <li>Base de clientes própria</li>
+                <li>Previsão financeira real</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- FUNCIONALIDADES -->
+      <section class="funcionalidades-secao" id="funcionalidades">
+        <div class="container revelar">
+          <p class="secao-rotulo" style="color: var(--aqua)">Tudo que você precisa</p>
+          <h2 style="color: var(--white)">Funcionalidades</h2>
+          <!-- Mapa do lago -->
+          <div class="mapa-envoltorio revelar" style="margin-top: 3rem">
+            <img
+              src="assets/images/mapa-lago.png"
+              alt="Mapa do lago no PeskPASS"
+              class="mapa-imagem"
+            />
+            <div class="mapa-info">
+              <p class="secao-rotulo" style="color: var(--aqua)">Funcionalidade principal</p>
+              <p
+                style="
+                  font-family: &quot;Plus Jakarta Sans&quot;, sans-serif;
+                  font-size: 1.4rem;
+                  font-weight: 700;
+                  color: var(--white);
+                  margin-bottom: 1rem;
+                  line-height: 1.5;
+                "
+              >
+                Mapa do Lago
+              </p>
+              <p>
+                A funcionalidade central do PeskPASS: cada pesqueiro cadastra o desenho do seu lago
+                com todos os espaços demarcados. O pescador vê em tempo real quais vagas estão
+                livres e reserva a que preferir.
+              </p>
+              <p>
+                Lugar favorito ou cantinho da sorte?<br />
+                Tudo reservável com antecedência.
+              </p>
+              <div class="mapa-legenda">
+                <div class="legenda-item">
+                  <div class="legenda-ponto ponto-livre"></div>
+                  Vaga disponível
+                </div>
+                <div class="legenda-item">
+                  <div class="legenda-ponto ponto-ocupado"></div>
+                  Vaga ocupada
+                </div>
+                <div class="legenda-item">
+                  <div class="legenda-ponto ponto-selecionado"></div>
+                  Vaga selecionada
+                </div>
+              </div>
+            </div>
+          </div>
+          <p class="secao-sub" style="margin-top: 3rem">
+            Uma plataforma completa, pensada para a realidade dos pesqueiros brasileiros.
+          </p>
+          <div class="funcionalidades-grade">
+            <article class="funcionalidade-card revelar">
+              <div class="funcionalidade-icone" aria-hidden="true">
+                <span class="material-symbols-rounded">map</span>
+              </div>
+              <h3>Mapa interativo do lago</h3>
+              <p>
+                Cadastre seus espaços com localização exata. Pescadores escolhem onde sentar antes
+                de sair de casa.
+              </p>
+            </article>
+            <article class="funcionalidade-card revelar">
+              <div class="funcionalidade-icone" aria-hidden="true">
+                <span class="material-symbols-rounded">inventory_2</span>
+              </div>
+              <h3>Pacotes personalizados</h3>
+              <p>
+                Monte combos de day use com café, almoço, kit de pesca ou qualquer serviço do seu
+                pesqueiro.
+              </p>
+            </article>
+            <article class="funcionalidade-card revelar">
+              <div class="funcionalidade-icone" aria-hidden="true">
+                <span class="material-symbols-rounded">payments</span>
+              </div>
+              <h3>Pagamento antecipado</h3>
+              <p>
+                Receba antes mesmo do pescador chegar. Sem inadimplência, sem maquininha na entrada.
+              </p>
+            </article>
+            <article class="funcionalidade-card revelar">
+              <div class="funcionalidade-icone" aria-hidden="true">
+                <span class="material-symbols-rounded">bar_chart</span>
+              </div>
+              <h3>Painel completo</h3>
+              <p>
+                Veja reservas do dia, receita do mês, taxa de ocupação e histórico detalhado em
+                tempo real.
+              </p>
+            </article>
+            <article class="funcionalidade-card revelar">
+              <div class="funcionalidade-icone" aria-hidden="true">
+                <span class="material-symbols-rounded">group</span>
+              </div>
+              <h3>Histórico de clientes</h3>
+              <p>
+                Saiba quem são seus clientes mais fiéis e quanto cada um já gastou no seu pesqueiro.
+              </p>
+            </article>
+            <article class="funcionalidade-card revelar">
+              <div class="funcionalidade-icone" aria-hidden="true">
+                <span class="material-symbols-rounded">share</span>
+              </div>
+              <h3>Link compartilhável</h3>
+              <p>
+                Cole o link de reservas no seu Instagram, WhatsApp e site. Seus seguidores reservam
+                direto.
+              </p>
+            </article>
+            <article class="funcionalidade-card revelar">
+              <div class="funcionalidade-icone" aria-hidden="true">
+                <span class="material-symbols-rounded">travel_explore</span>
+              </div>
+              <h3>Descoberta na plataforma</h3>
+              <p>
+                Pescadores do Brasil todo encontram seu pesqueiro no PeskPASS com filtros de cidade,
+                estrutura e avaliação.
+              </p>
+            </article>
+            <article class="funcionalidade-card revelar">
+              <div class="funcionalidade-icone" aria-hidden="true">
+                <span class="material-symbols-rounded">open_in_browser</span>
+              </div>
+              <h3>Web App</h3>
+              <p>
+                Funciona direto no navegador do celular, sem precisar instalar nada. O pescador
+                reserva em segundos, a qualquer hora.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- DEPOIMENTOS -->
+      <section class="depoimentos" id="depoimentos">
+        <div class="container revelar">
+          <p class="secao-rotulo">O que pescadores dizem por aí</p>
+          <h2>Os pescadores já estão<br />pedindo isso — faz tempo.</h2>
+          <p class="secao-sub">
+            Coletamos relatos de grupos de pesca esportiva e fóruns online. Esses não são clientes
+            do PeskPASS — são pescadores descrevendo a realidade dos pesqueiros hoje. Seu pesqueiro
+            pode ser a resposta que eles procuram.
+          </p>
+          <div class="depoimentos-grade">
+            <article class="depoimento-card revelar">
+              <div class="depoimento-relato-badge">Grupo de pesca no Facebook</div>
+              <blockquote class="depoimento-texto">
+                &ldquo;Rodava quase duas horas para chegar no meu pesqueiro favorito. Nas últimas
+                vezes, a fila na entrada já estava tão grande que o desânimo começava antes mesmo de
+                entrar. Depois de tantos anos indo quase todo fim de semana, acabei perdendo a
+                vontade.&rdquo;
+              </blockquote>
+              <footer class="depoimento-autor">
+                <div class="depoimento-avatar" aria-hidden="true">RM</div>
+                <div>
+                  <cite class="depoimento-nome">R. M.</cite>
+                  <div class="depoimento-info">Pescador · Campinas, SP</div>
+                </div>
+              </footer>
+            </article>
+            <article class="depoimento-card revelar">
+              <div class="depoimento-relato-badge">Fórum de pesca esportiva</div>
+              <blockquote class="depoimento-texto">
+                &ldquo;Cansei de passar o dia cruzando linha. Nos finais de semana e feriados tem
+                tanta gente na beira do lago que os peixes desaparecem com tanta movimentação na
+                água. Hoje em dia só pesco nas férias ou durante a semana, quando consigo uma
+                folga.&rdquo;
+              </blockquote>
+              <footer class="depoimento-autor">
+                <div class="depoimento-avatar" aria-hidden="true">LC</div>
+                <div>
+                  <cite class="depoimento-nome">L. C.</cite>
+                  <div class="depoimento-info">Pescador · São Paulo, SP</div>
+                </div>
+              </footer>
+            </article>
+            <article class="depoimento-card revelar">
+              <div class="depoimento-relato-badge">Grupo de pesca no WhatsApp</div>
+              <blockquote class="depoimento-texto">
+                &ldquo;Já vi discussão e até briga na abertura do portão. A gente sai de casa
+                querendo relaxar, pescar e curtir o dia com a família, mas quando falta organização
+                o passeio vira dor de cabeça e você volta pra casa com a sensação de ter perdido
+                tempo e dinheiro.&rdquo;
+              </blockquote>
+              <footer class="depoimento-autor">
+                <div class="depoimento-avatar" aria-hidden="true">CS</div>
+                <div>
+                  <cite class="depoimento-nome">C. S.</cite>
+                  <div class="depoimento-info">Pescador · Goiânia, GO</div>
+                </div>
+              </footer>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- FAQ -->
+      <section class="faq" id="faq">
+        <div class="container revelar">
+          <p class="secao-rotulo">Tire suas dúvidas</p>
+          <h2>Dúvidas frequentes</h2>
+          <div class="faq-lista">
+            <div class="faq-item">
+              <button class="faq-pergunta" aria-expanded="false">
+                Quanto custa usar o PeskPASS?
+                <span class="faq-icone" aria-hidden="true"
+                  ><span class="material-symbols-rounded" style="font-size: 1.2rem">add</span></span
+                >
+              </button>
+              <div class="faq-resposta">
+                <p>
+                  O cadastro é <strong>gratuito no pré-lançamento</strong>. Os 100 primeiros
+                  pesqueiros terão prioridade na definição das condições do lançamento. O modelo de
+                  monetização será anunciado antes do lançamento — quem entrar agora assegura
+                  condições especiais.
+                </p>
+              </div>
+            </div>
+            <div class="faq-item">
+              <button class="faq-pergunta" aria-expanded="false">
+                O pescador precisa instalar algum app?
+                <span class="faq-icone" aria-hidden="true"
+                  ><span class="material-symbols-rounded" style="font-size: 1.2rem">add</span></span
+                >
+              </button>
+              <div class="faq-resposta">
+                <p>
+                  Não. O PeskPASS é um <strong>Web App</strong> — funciona direto no navegador do
+                  celular, sem download, sem cadastro complicado. O pescador acessa o link que você
+                  compartilha no seu Site, Instagram ou WhatsApp e reserva em segundos.
+                </p>
+              </div>
+            </div>
+            <div class="faq-item">
+              <button class="faq-pergunta" aria-expanded="false">
+                Como funciona o pagamento antecipado?
+                <span class="faq-icone" aria-hidden="true"
+                  ><span class="material-symbols-rounded" style="font-size: 1.2rem">add</span></span
+                >
+              </button>
+              <div class="faq-resposta">
+                <p>
+                  O pescador paga no momento da reserva, direto pela plataforma. O valor é
+                  transferido para você conforme o cronograma de repasse. Sem maquininha na entrada,
+                  sem troco, sem inadimplência.
+                </p>
+              </div>
+            </div>
+            <div class="faq-item">
+              <button class="faq-pergunta" aria-expanded="false">
+                Funciona para pesqueiro pequeno?
+                <span class="faq-icone" aria-hidden="true"
+                  ><span class="material-symbols-rounded" style="font-size: 1.2rem">add</span></span
+                >
+              </button>
+              <div class="faq-resposta">
+                <p>
+                  Sim. O PeskPASS foi pensado para todo tamanho de operação. Você cadastra quantos
+                  lagos e vagas quiser, sem limite.
+                </p>
+              </div>
+            </div>
+            <div class="faq-item">
+              <button class="faq-pergunta" aria-expanded="false">
+                É difícil de configurar?
+                <span class="faq-icone" aria-hidden="true"
+                  ><span class="material-symbols-rounded" style="font-size: 1.2rem">add</span></span
+                >
+              </button>
+              <div class="faq-resposta">
+                <p>
+                  O cadastro leva cerca de 5 minutos. Você preenche as informações do pesqueiro,
+                  demarca as vagas no mapa do lago e cria seus pacotes. Nenhuma configuração
+                  técnica, nenhum programador necessário.
+                </p>
+              </div>
+            </div>
+            <div class="faq-item">
+              <button class="faq-pergunta" aria-expanded="false">
+                E se o cliente quiser cancelar?
+                <span class="faq-icone" aria-hidden="true"
+                  ><span class="material-symbols-rounded" style="font-size: 1.2rem">add</span></span
+                >
+              </button>
+              <div class="faq-resposta">
+                <p>
+                  Você define sua própria política de cancelamento no cadastro do pesqueiro. O
+                  pescador visualiza as regras antes de confirmar a reserva — sem surpresas para
+                  nenhum dos lados.
+                </p>
+              </div>
+            </div>
+            <div class="faq-item">
+              <button class="faq-pergunta" aria-expanded="false">
+                O pesqueiro pode receber clientes sem reserva?
+                <span class="faq-icone" aria-hidden="true"
+                  ><span class="material-symbols-rounded" style="font-size: 1.2rem">add</span></span
+                >
+              </button>
+              <div class="faq-resposta">
+                <p>
+                  Sim. O PeskPASS organiza sua operação, não a limita. Quem reservou pelo PeskPASS
+                  chega com o espaço confirmado e sem fila. Quem aparecer no pesqueiro sem reserva
+                  pode ocupar qualquer vaga ainda livre — o dono registra a ocupação na plataforma
+                  na hora, e o mapa atualiza em tempo real para nenhum outro pescador reservar o
+                  mesmo espaço.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- FORMULÁRIO -->
+      <section class="formulario" id="cadastro">
+        <div class="container">
+          <div class="formulario-interno revelar">
+            <p class="secao-rotulo" style="color: var(--aqua); text-align: center">
+              Gratuito · Vagas limitadas por região
+            </p>
+            <h2>Entre no pré-lançamento.<br />Sua região ainda tem lugar.</h2>
+            <p class="secao-sub">
+              Apenas <strong style="color: var(--aqua)">100 pesqueiros</strong> entram no
+              pré-lançamento. Os primeiros da sua região têm prioridade e condições exclusivas no
+              lançamento.
+            </p>
+            <div class="formulario-caixa">
+              <form onsubmit="enviarFormulario(event)">
+                <div class="formulario-grade">
+                  <div class="formulario-grupo">
+                    <label for="nome-responsavel">Nome do responsável *</label>
+                    <input type="text" id="nome-responsavel" name="nome_responsavel" required />
+                  </div>
+                  <div class="formulario-grupo">
+                    <label for="nome-pesqueiro">Nome do pesqueiro *</label>
+                    <input type="text" id="nome-pesqueiro" name="nome_pesqueiro" required />
+                  </div>
+                  <div class="formulario-grupo">
+                    <label for="cidade">Cidade *</label>
+                    <input type="text" id="cidade" name="cidade" required />
+                  </div>
+                  <div class="formulario-grupo">
+                    <label for="estado">Estado *</label>
+                    <select id="estado" name="estado" required>
+                      <option value="">Selecione</option>
+                      <option value="AC">Acre</option>
+                      <option value="AL">Alagoas</option>
+                      <option value="AP">Amapá</option>
+                      <option value="AM">Amazonas</option>
+                      <option value="BA">Bahia</option>
+                      <option value="CE">Ceará</option>
+                      <option value="DF">Distrito Federal</option>
+                      <option value="ES">Espírito Santo</option>
+                      <option value="GO">Goiás</option>
+                      <option value="MA">Maranhão</option>
+                      <option value="MT">Mato Grosso</option>
+                      <option value="MS">Mato Grosso do Sul</option>
+                      <option value="MG">Minas Gerais</option>
+                      <option value="PA">Pará</option>
+                      <option value="PB">Paraíba</option>
+                      <option value="PR">Paraná</option>
+                      <option value="PE">Pernambuco</option>
+                      <option value="PI">Piauí</option>
+                      <option value="RJ">Rio de Janeiro</option>
+                      <option value="RN">Rio Grande do Norte</option>
+                      <option value="RS">Rio Grande do Sul</option>
+                      <option value="RO">Rondônia</option>
+                      <option value="RR">Roraima</option>
+                      <option value="SC">Santa Catarina</option>
+                      <option value="SP">São Paulo</option>
+                      <option value="SE">Sergipe</option>
+                      <option value="TO">Tocantins</option>
+                    </select>
+                  </div>
+                  <div class="formulario-grupo full">
+                    <label for="whatsApp">WhatsApp *</label>
+                    <input type="tel" id="whatsApp" name="whatsApp" inputmode="tel" required />
+                  </div>
+                  <button type="submit" class="formulario-enviar">
+                    Cadastrar meu pesqueiro no pré-lançamento →
+                  </button>
+                  <p class="formulario-aviso">
+                    Assim que confirmarmos sua região, você recebe acesso antecipado pelo WhatsApp.
+                    Seus dados não serão compartilhados. Sem spam.
+                  </p>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="rodape-container">
+        <div class="rodape-topo">
           <div>
-            <cite class="depoimento-nome">R. M.</cite>
-            <div class="depoimento-info">Pescador · Campinas, SP</div>
+            <div class="rodape-logo">Pesk<span>PASS</span></div>
+            <p class="rodape-slogan">O pesqueiro organizado<br />começa aqui.</p>
           </div>
-        </footer>
-      </article>
-      <article class="depoimento-card revelar">
-        <div class="depoimento-relato-badge">Fórum de pesca esportiva</div>
-        <blockquote class="depoimento-texto">&ldquo;Cansei de passar o dia cruzando linha. Nos finais de semana e feriados tem tanta gente na beira do lago que os peixes desaparecem com tanta movimentação na água. Hoje em dia só pesco nas férias ou durante a semana, quando consigo uma folga.&rdquo;</blockquote>
-        <footer class="depoimento-autor">
-          <div class="depoimento-avatar" aria-hidden="true">LC</div>
-          <div>
-            <cite class="depoimento-nome">L. C.</cite>
-            <div class="depoimento-info">Pescador · São Paulo, SP</div>
+          <nav class="rodape-coluna" aria-label="Links da plataforma">
+            <p class="rodape-coluna-titulo">Menu</p>
+            <a href="#problema">Problema</a>
+            <a href="#oque">Solução</a>
+            <a href="#calculadora">Calculadora</a>
+            <a href="#como-funciona">Como funciona</a>
+            <a href="#transformacao">Transformação</a>
+            <a href="#funcionalidades">Funcionalidades</a>
+            <a href="#depoimentos">Depoimentos</a>
+            <a href="#faq">FAQ</a>
+          </nav>
+          <div class="rodape-coluna">
+            <p class="rodape-coluna-titulo">Pré-cadastro</p>
+            <p class="rodape-coluna-texto">
+              Lançamento em breve. Cadastre seu pesqueiro e seja avisado em primeira mão.
+            </p>
+            <a href="#cadastro" class="rodape-cta">Cadastrar meu pesqueiro →</a>
           </div>
-        </footer>
-      </article>
-      <article class="depoimento-card revelar">
-        <div class="depoimento-relato-badge">Grupo de pesca no WhatsApp</div>
-        <blockquote class="depoimento-texto">&ldquo;Já vi discussão e até briga na abertura do portão. A gente sai de casa querendo relaxar, pescar e curtir o dia com a família, mas quando falta organização o passeio vira dor de cabeça e você volta pra casa com a sensação de ter perdido tempo e dinheiro.&rdquo;</blockquote>
-        <footer class="depoimento-autor">
-          <div class="depoimento-avatar" aria-hidden="true">CS</div>
-          <div>
-            <cite class="depoimento-nome">C. S.</cite>
-            <div class="depoimento-info">Pescador · Goiânia, GO</div>
-          </div>
-        </footer>
-      </article>
-    </div>
-  </div>
-</section>
+        </div>
+        <div class="rodape-divisor"></div>
+        <div class="rodape-base">
+          <p class="rodape-copyright">
+            © <span id="ano-copyright"></span> PeskPASS. Todos os direitos reservados.
+          </p>
+          <p class="rodape-feito">
+            <span class="material-symbols-rounded" style="font-size: 0.85rem">water</span> Criado
+            por pescadores para pesqueiros
+          </p>
+        </div>
+      </div>
+    </footer>
 
-<!-- FAQ -->
-<section class="faq" id="faq">
-  <div class="container revelar">
-    <p class="secao-rotulo">Tire suas dúvidas</p>
-    <h2>Dúvidas frequentes</h2>
-    <div class="faq-lista">
-      <div class="faq-item">
-        <button class="faq-pergunta" aria-expanded="false">
-          Quanto custa usar o PeskPASS?
-          <span class="faq-icone" aria-hidden="true"><span class="material-symbols-rounded" style="font-size:1.2rem">add</span></span>
-        </button>
-        <div class="faq-resposta">
-          <p>O cadastro é <strong>gratuito no pré-lançamento</strong>. Os 100 primeiros pesqueiros terão prioridade na definição das condições do lançamento. O modelo de monetização será anunciado antes do lançamento — quem entrar agora assegura condições especiais.</p>
-        </div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-pergunta" aria-expanded="false">
-          O pescador precisa instalar algum app?
-          <span class="faq-icone" aria-hidden="true"><span class="material-symbols-rounded" style="font-size:1.2rem">add</span></span>
-        </button>
-        <div class="faq-resposta">
-          <p>Não. O PeskPASS é um <strong>Web App</strong> — funciona direto no navegador do celular, sem download, sem cadastro complicado. O pescador acessa o link que você compartilha no seu Site, Instagram ou WhatsApp e reserva em segundos.</p>
-        </div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-pergunta" aria-expanded="false">
-          Como funciona o pagamento antecipado?
-          <span class="faq-icone" aria-hidden="true"><span class="material-symbols-rounded" style="font-size:1.2rem">add</span></span>
-        </button>
-        <div class="faq-resposta">
-          <p>O pescador paga no momento da reserva, direto pela plataforma. O valor é transferido para você conforme o cronograma de repasse. Sem maquininha na entrada, sem troco, sem inadimplência.</p>
-        </div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-pergunta" aria-expanded="false">
-          Funciona para pesqueiro pequeno?
-          <span class="faq-icone" aria-hidden="true"><span class="material-symbols-rounded" style="font-size:1.2rem">add</span></span>
-        </button>
-        <div class="faq-resposta">
-          <p>Sim. O PeskPASS foi pensado para todo tamanho de operação. Você cadastra quantos lagos e vagas quiser, sem limite.</p>
-        </div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-pergunta" aria-expanded="false">
-          É difícil de configurar?
-          <span class="faq-icone" aria-hidden="true"><span class="material-symbols-rounded" style="font-size:1.2rem">add</span></span>
-        </button>
-        <div class="faq-resposta">
-          <p>O cadastro leva cerca de 5 minutos. Você preenche as informações do pesqueiro, demarca as vagas no mapa do lago e cria seus pacotes. Nenhuma configuração técnica, nenhum programador necessário.</p>
-        </div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-pergunta" aria-expanded="false">
-          E se o cliente quiser cancelar?
-          <span class="faq-icone" aria-hidden="true"><span class="material-symbols-rounded" style="font-size:1.2rem">add</span></span>
-        </button>
-        <div class="faq-resposta">
-          <p>Você define sua própria política de cancelamento no cadastro do pesqueiro. O pescador visualiza as regras antes de confirmar a reserva — sem surpresas para nenhum dos lados.</p>
-        </div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-pergunta" aria-expanded="false">
-          O pesqueiro pode receber clientes sem reserva?
-          <span class="faq-icone" aria-hidden="true"><span class="material-symbols-rounded" style="font-size:1.2rem">add</span></span>
-        </button>
-        <div class="faq-resposta">
-          <p>Sim. O PeskPASS organiza sua operação, não a limita. Quem reservou pelo PeskPASS chega com o espaço confirmado e sem fila. Quem aparecer no pesqueiro sem reserva pode ocupar qualquer vaga ainda livre — o dono registra a ocupação na plataforma na hora, e o mapa atualiza em tempo real para nenhum outro pescador reservar o mesmo espaço.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- FORMULÁRIO -->
-<section class="formulario" id="cadastro">
-  <div class="container">
-    <div class="formulario-interno revelar">
-      <p class="secao-rotulo" style="color:var(--aqua);text-align:center">Gratuito · Vagas limitadas por região</p>
-      <h2>Entre no pré-lançamento.<br>Sua região ainda tem lugar.</h2>
-      <p class="secao-sub">Apenas <strong style="color:var(--aqua)">100 pesqueiros</strong> entram no pré-lançamento. Os primeiros da sua região têm prioridade e condições exclusivas no lançamento.</p>
-      <div class="formulario-caixa">
-        <form onsubmit="enviarFormulario(event)">
-          <div class="formulario-grade">
-            <div class="formulario-grupo">
-              <label for="nome-responsavel">Nome do responsável *</label>
-              <input type="text" id="nome-responsavel" name="nome_responsavel" required>
-            </div>
-            <div class="formulario-grupo">
-              <label for="nome-pesqueiro">Nome do pesqueiro *</label>
-              <input type="text" id="nome-pesqueiro" name="nome_pesqueiro" required>
-            </div>
-            <div class="formulario-grupo">
-              <label for="cidade">Cidade *</label>
-              <input type="text" id="cidade" name="cidade" required>
-            </div>
-            <div class="formulario-grupo">
-              <label for="estado">Estado *</label>
-              <select id="estado" name="estado" required>
-                <option value="">Selecione</option>
-                <option value="AC">Acre</option>
-                <option value="AL">Alagoas</option>
-                <option value="AP">Amapá</option>
-                <option value="AM">Amazonas</option>
-                <option value="BA">Bahia</option>
-                <option value="CE">Ceará</option>
-                <option value="DF">Distrito Federal</option>
-                <option value="ES">Espírito Santo</option>
-                <option value="GO">Goiás</option>
-                <option value="MA">Maranhão</option>
-                <option value="MT">Mato Grosso</option>
-                <option value="MS">Mato Grosso do Sul</option>
-                <option value="MG">Minas Gerais</option>
-                <option value="PA">Pará</option>
-                <option value="PB">Paraíba</option>
-                <option value="PR">Paraná</option>
-                <option value="PE">Pernambuco</option>
-                <option value="PI">Piauí</option>
-                <option value="RJ">Rio de Janeiro</option>
-                <option value="RN">Rio Grande do Norte</option>
-                <option value="RS">Rio Grande do Sul</option>
-                <option value="RO">Rondônia</option>
-                <option value="RR">Roraima</option>
-                <option value="SC">Santa Catarina</option>
-                <option value="SP">São Paulo</option>
-                <option value="SE">Sergipe</option>
-                <option value="TO">Tocantins</option>
-              </select>
-            </div>
-            <div class="formulario-grupo full">
-              <label for="whatsApp">WhatsApp *</label>
-              <input type="tel" id="whatsApp" name="whatsApp" inputmode="tel" required>
-            </div>
-            <button type="submit" class="formulario-enviar">Cadastrar meu pesqueiro no pré-lançamento →</button>
-            <p class="formulario-aviso">Assim que confirmarmos sua região, você recebe acesso antecipado pelo WhatsApp. Seus dados não serão compartilhados. Sem spam.</p>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
-</section>
-
-</main>
-
-<!-- FOOTER -->
-<footer>
-  <div class="rodape-container">
-    <div class="rodape-topo">
-      <div>
-        <div class="rodape-logo">Pesk<span>PASS</span></div>
-        <p class="rodape-slogan">O pesqueiro organizado<br>começa aqui.</p>
-      </div>
-      <nav class="rodape-coluna" aria-label="Links da plataforma">
-        <p class="rodape-coluna-titulo">Menu</p>
-        <a href="#problema">Problema</a>
-        <a href="#oque">Solução</a>
-        <a href="#calculadora">Calculadora</a>
-        <a href="#como-funciona">Como funciona</a>
-        <a href="#transformacao">Transformação</a>
-        <a href="#funcionalidades">Funcionalidades</a>
-        <a href="#depoimentos">Depoimentos</a>
-        <a href="#faq">FAQ</a>
-      </nav>
-      <div class="rodape-coluna">
-        <p class="rodape-coluna-titulo">Pré-cadastro</p>
-        <p class="rodape-coluna-texto">Lançamento em breve. Cadastre seu pesqueiro e seja avisado em primeira mão.</p>
-        <a href="#cadastro" class="rodape-cta">Cadastrar meu pesqueiro →</a>
-      </div>
-    </div>
-    <div class="rodape-divisor"></div>
-    <div class="rodape-base">
-      <p class="rodape-copyright">© <span id="ano-copyright"></span> PeskPASS. Todos os direitos reservados.</p>
-      <p class="rodape-feito"><span class="material-symbols-rounded" style="font-size:0.85rem">water</span> Criado por pescadores para pesqueiros</p>
-    </div>
-  </div>
-</footer>
-
-<script src="assets/js/script.js"></script>
-</body>
+    <script src="assets/js/script.js"></script>
+  </body>
 </html>
