@@ -1,12 +1,14 @@
 // Burger menu
 const hamburguer = document.getElementById("hamburguer");
 const menuCelular = document.getElementById("menu-celular");
+const hamburguerIcone = hamburguer.querySelector(".material-symbols-rounded");
 hamburguer.addEventListener("click", () => {
   const isOpen = hamburguer.classList.toggle("open");
   menuCelular.classList.toggle("open");
   hamburguer.setAttribute("aria-expanded", isOpen);
   hamburguer.setAttribute("aria-label", isOpen ? "Fechar menu" : "Abrir menu");
   menuCelular.setAttribute("aria-hidden", !isOpen);
+  hamburguerIcone.textContent = isOpen ? "close" : "menu";
 });
 function fecharMenu() {
   hamburguer.classList.remove("open");
@@ -14,6 +16,7 @@ function fecharMenu() {
   hamburguer.setAttribute("aria-expanded", "false");
   hamburguer.setAttribute("aria-label", "Abrir menu");
   menuCelular.setAttribute("aria-hidden", "true");
+  hamburguerIcone.textContent = "menu";
 }
 
 // Revelar ao rolar
