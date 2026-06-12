@@ -1295,11 +1295,6 @@ footer {
   color: var(--muted);
   line-height: 1;
 }
-.calc-erro {
-  font-size: 0.75rem;
-  color: var(--red);
-  display: block;
-}
 
 /* ── FAQ ── */
 .faq {

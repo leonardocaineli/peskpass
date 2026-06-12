@@ -58,31 +58,13 @@ document.querySelectorAll(".faq-pergunta").forEach((btn) => {
 });
 
 // Calculadora de potencial
-function calcularPotencial() {
-  const camposErros = [
-    { id: "calc-vagas", erroId: "erro-vagas", msg: "Preencha o campo vagas" },
-    { id: "calc-valor", erroId: "erro-valor", msg: "Preencha o campo valor" },
-    { id: "calc-dias", erroId: "erro-dias", msg: "Preencha o campo dias" },
-  ];
-  let valido = true;
-  const valores = {};
-  camposErros.forEach(({ id, erroId, msg }) => {
-    const input = document.getElementById(id);
-    const erro = document.getElementById(erroId);
-    const val = parseFloat(input.value.replace(",", "."));
-    if (!val || val <= 0) {
-      erro.textContent = msg;
-      input.style.borderColor = "var(--red)";
-      valido = false;
-    } else {
-      erro.textContent = "";
-      input.style.borderColor = "";
-      valores[id] = val;
-    }
-  });
-  if (!valido) return;
-  const porDia = Math.round(valores["calc-vagas"] * valores["calc-valor"]);
-  const porSemana = Math.round(porDia * valores["calc-dias"]);
+function calcularPotencial(e) {
+  e.preventDefault();
+  const vagas = parseFloat(document.getElementById("calc-vagas").value.replace(",", "."));
+  const valor = parseFloat(document.getElementById("calc-valor").value.replace(",", "."));
+  const dias = parseFloat(document.getElementById("calc-dias").value.replace(",", "."));
+  const porDia = Math.round(vagas * valor);
+  const porSemana = Math.round(porDia * dias);
   const porMes = Math.round(porSemana * 4.3);
   const fmt = (n) =>
     n.toLocaleString("pt-BR", { style: "currency", currency: "BRL", maximumFractionDigits: 0 });

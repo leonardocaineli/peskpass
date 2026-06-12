@@ -315,26 +315,23 @@
             completa.
           </p>
           <div class="calc-envoltorio">
-            <div class="calc-grade">
-              <div class="calc-grupo">
-                <label for="calc-vagas">Número de vagas</label>
-                <input id="calc-vagas" inputmode="numeric" />
-                <span class="calc-erro" id="erro-vagas"></span>
+            <form onsubmit="calcularPotencial(event)">
+              <div class="calc-grade">
+                <div class="calc-grupo">
+                  <label for="calc-vagas">Número de vagas</label>
+                  <input id="calc-vagas" inputmode="numeric" required />
+                </div>
+                <div class="calc-grupo">
+                  <label for="calc-valor">Valor da entrada (R$)</label>
+                  <input id="calc-valor" inputmode="decimal" required />
+                </div>
+                <div class="calc-grupo">
+                  <label for="calc-dias">Dias abertos por semana</label>
+                  <input id="calc-dias" inputmode="numeric" required />
+                </div>
               </div>
-              <div class="calc-grupo">
-                <label for="calc-valor">Valor da entrada (R$)</label>
-                <input id="calc-valor" inputmode="decimal" />
-                <span class="calc-erro" id="erro-valor"></span>
-              </div>
-              <div class="calc-grupo">
-                <label for="calc-dias">Dias abertos por semana</label>
-                <input id="calc-dias" inputmode="numeric" />
-                <span class="calc-erro" id="erro-dias"></span>
-              </div>
-            </div>
-            <button class="calc-btn" onclick="calcularPotencial()">
-              Ver o potencial do meu pesqueiro
-            </button>
+              <button type="submit" class="calc-btn">Ver o potencial do meu pesqueiro</button>
+            </form>
             <div class="calc-resultado" id="calc-resultado">
               <div class="calc-resultado-valores">
                 <div>
@@ -836,19 +833,19 @@
               <form onsubmit="enviarFormulario(event)">
                 <div class="formulario-grade">
                   <div class="formulario-grupo">
-                    <label for="nome-responsavel">Nome do responsável *</label>
-                    <input type="text" id="nome-responsavel" name="nome_responsavel" required />
-                  </div>
-                  <div class="formulario-grupo">
-                    <label for="nome-pesqueiro">Nome do pesqueiro *</label>
+                    <label for="nome-pesqueiro">Nome do pesqueiro</label>
                     <input type="text" id="nome-pesqueiro" name="nome_pesqueiro" required />
                   </div>
                   <div class="formulario-grupo">
-                    <label for="cidade">Cidade *</label>
+                    <label for="nome-responsavel">Nome do responsável</label>
+                    <input type="text" id="nome-responsavel" name="nome_responsavel" required />
+                  </div>
+                  <div class="formulario-grupo">
+                    <label for="cidade">Cidade</label>
                     <input type="text" id="cidade" name="cidade" required />
                   </div>
                   <div class="formulario-grupo">
-                    <label for="estado">Estado *</label>
+                    <label for="estado">Estado</label>
                     <select id="estado" name="estado" required>
                       <option value="">Selecione</option>
                       <option value="AC">Acre</option>
@@ -881,12 +878,12 @@
                     </select>
                   </div>
                   <div class="formulario-grupo">
-                    <label for="email">E-mail *</label>
+                    <label for="email">E-mail</label>
                     <input type="email" id="email" name="email" inputmode="email" required />
                   </div>
                   <div class="formulario-grupo">
-                    <label for="telefone">Telefone (WhatsApp) *</label>
-                    <input type="tel" id="telefone" name="telefone" inputmode="tel" required />
+                    <label for="whatsApp">WhatsApp</label>
+                    <input type="tel" id="whatsApp" name="whatsApp" inputmode="tel" required />
                   </div>
                   <button type="submit" class="formulario-enviar">
                     Cadastrar meu pesqueiro no pré-lançamento →
