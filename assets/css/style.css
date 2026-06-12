@@ -679,7 +679,7 @@ h2 {
 }
 .funcionalidades-grade {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  grid-template-columns: repeat(4, 1fr);
   gap: 1.5rem;
   margin-top: 3rem;
 }
@@ -720,7 +720,7 @@ h2 {
 }
 .depoimentos-grade {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: 1.5rem;
   margin-top: 3rem;
 }
@@ -1300,22 +1300,6 @@ footer {
   color: var(--red);
   display: block;
 }
-@media (max-width: 699px) {
-  .calc-grade {
-    grid-template-columns: 1fr;
-    align-items: start;
-  }
-  .calc-envoltorio {
-    padding: 1.5rem;
-  }
-  .calc-resultado-valores {
-    grid-template-columns: 1fr;
-    gap: 1rem;
-  }
-  .calc-separador {
-    display: none;
-  }
-}
 
 /* ── FAQ ── */
 .faq {
@@ -1386,6 +1370,7 @@ footer {
   font-size: 0.95rem;
   color: var(--muted);
   line-height: 1.65;
+  text-align: left;
 }
 
 /* ── CREDIBILIDADE (strip em O QUE É) ── */
@@ -1496,6 +1481,23 @@ footer {
     gap: 1rem;
   }
   .calc-grade {
+    grid-template-columns: 1fr;
+    align-items: start;
+  }
+  .calc-envoltorio {
+    padding: 1.5rem;
+  }
+  .calc-resultado-valores {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  .calc-separador {
+    display: none;
+  }
+  .funcionalidades-grade {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .depoimentos-grade {
     grid-template-columns: 1fr;
   }
   .btn-primario,
