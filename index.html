@@ -1,0 +1,1379 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PeskPASS — Reservas para Pesqueiros</title>
+<meta name="description" content="PeskPASS é a plataforma de reservas para pesqueiros brasileiros. Donos gerenciam vagas e pacotes; pescadores reservam o espaço favorito no lago com antecedência. Sem filas, sem surpresas.">
+<link rel="canonical" href="https://peskpass.com.br/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="PeskPASS — Reservas para Pesqueiros">
+<meta property="og:description" content="Organize seu pesqueiro, venda mais e fidelize pescadores com reservas online e pagamento antecipado.">
+<meta property="og:url" content="https://peskpass.com.br/">
+<meta property="og:locale" content="pt_BR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="PeskPASS — Reservas para Pesqueiros">
+<meta name="twitter:description" content="Organize seu pesqueiro, venda mais e fidelize pescadores com reservas online e pagamento antecipado.">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "PeskPASS",
+  "description": "Plataforma de reservas para pesqueiros brasileiros com mapa de lago interativo, pagamento antecipado e dashboard de gestão.",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "BRL" },
+  "url": "https://peskpass.com.br/",
+  "inLanguage": "pt-BR"
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=block">
+<style>
+  :root {
+    --deep: #062a38;
+    --water: #0e6e8c;
+    --lake: #1a9e72;
+    --aqua: #5ecfb1;
+    --foam: #e8f5f1;
+    --sand: #f7f2e8;
+    --text: #0d2028;
+    --muted: #4a7080;
+    --white: #ffffff;
+    --red: #e05c5c;
+  }
+
+  .material-symbols-rounded {
+    font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 48;
+    font-size: inherit; line-height: 1; vertical-align: middle;
+    user-select: none; display: inline-block;
+  }
+
+  /* Cores dos ícones por contexto */
+  .problema-icon .material-symbols-rounded          { color: var(--water); }
+  .oque-card-icon .material-symbols-rounded          { color: var(--aqua); }
+  .trilha-dono .trilha-icone .material-symbols-rounded   { color: var(--water); }
+  .trilha-pescador .trilha-icone .material-symbols-rounded { color: var(--lake); }
+  .funcionalidade-icone .material-symbols-rounded    { color: var(--aqua); }
+  .antesdepois-antes .antesdepois-icone .material-symbols-rounded { color: var(--red); }
+  .antesdepois-depois .antesdepois-icone .material-symbols-rounded { color: var(--lake); }
+  .faq-icone .material-symbols-rounded               { color: var(--lake); }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    color: var(--text);
+    background: var(--white);
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  body > nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(4, 30, 42, 0.96);
+    backdrop-filter: blur(18px);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .nav-envoltorio {
+    max-width: 1200px; margin: 0 auto;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 68px; padding: 0 24px;
+  }
+  .nav-logo {
+    font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.35rem; font-weight: 800;
+    color: var(--aqua); letter-spacing: -0.02em; text-decoration: none;
+    display: flex; align-items: center; flex-shrink: 0;
+  }
+  .nav-logo span { color: var(--white); }
+  .nav-logo-icone { font-size: 1.1rem; line-height: 1; }
+  .nav-menu {
+    display: flex; align-items: center; gap: 0;
+    list-style: none;
+  }
+  .nav-menu a {
+    color: rgba(255,255,255,0.55); text-decoration: none;
+    font-size: 0.875rem; font-weight: 500; padding: 0.45rem 1rem;
+    position: relative; transition: color 0.2s;
+    letter-spacing: 0.01em;
+  }
+  .nav-menu a::after {
+    content: ''; position: absolute; bottom: -2px; left: 1rem; right: 1rem;
+    height: 2px; background: var(--aqua); border-radius: 2px;
+    transform: scaleX(0); transform-origin: center;
+    transition: transform 0.22s ease;
+  }
+  .nav-menu a:hover { color: var(--white); }
+  .nav-menu a:hover::after { transform: scaleX(1); }
+  .nav-direita {
+    display: flex; align-items: center; gap: 1rem;
+  }
+  .nav-separador {
+    width: 1px; height: 22px; background: rgba(255,255,255,0.12); flex-shrink: 0;
+  }
+  .nav-acao {
+    background: var(--lake); color: var(--white);
+    border: none; padding: 0.55rem 1.3rem; border-radius: 100px;
+    font-family: 'DM Sans', sans-serif; font-size: 0.875rem; font-weight: 600;
+    cursor: pointer; text-decoration: none; transition: all 0.22s; white-space: nowrap;
+    box-shadow: 0 4px 18px rgba(26,158,114,0.4);
+  }
+  .nav-acao:hover { background: #22c88a; transform: translateY(-1px); box-shadow: 0 6px 24px rgba(26,158,114,0.55); }
+  /* Hamburger */
+  .nav-hamburguer {
+    display: none; flex-direction: column; justify-content: center; gap: 5px;
+    background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 8px; cursor: pointer; padding: 8px 9px; width: 40px; height: 40px;
+    transition: background 0.2s;
+  }
+  .nav-hamburguer:hover { background: rgba(255,255,255,0.12); }
+  .nav-hamburguer span {
+    display: block; width: 100%; height: 2px;
+    background: var(--white); border-radius: 2px;
+    transition: all 0.28s cubic-bezier(0.68,-0.55,0.27,1.55);
+  }
+  .nav-hamburguer.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .nav-hamburguer.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+  .nav-hamburguer.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+  /* Mobile menu */
+  .nav-celular {
+    display: none; flex-direction: column;
+    background: #041822;
+    padding: 0.5rem 0 1.5rem;
+  }
+  .nav-celular.open { display: flex; }
+  .nav-celular a {
+    color: rgba(255,255,255,0.7); text-decoration: none;
+    font-size: 1rem; font-weight: 500;
+    padding: 0.85rem 24px;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    transition: color 0.2s, background 0.2s;
+    display: flex; align-items: center;
+  }
+  .nav-celular a:last-child { border-bottom: none; }
+  .nav-celular a:hover { color: var(--aqua); background: rgba(255,255,255,0.03); }
+  .nav-celular .nav-acao {
+    margin: 1rem 24px 0; border-radius: 100px;
+    text-align: center; justify-content: center;
+    box-shadow: 0 4px 18px rgba(26,158,114,0.35);
+  }
+
+  /* ── HERO ── */
+  .heroi {
+    min-height: 100vh;
+    background: var(--deep);
+    display: flex; align-items: center;
+    position: relative; overflow: hidden;
+    padding: 8rem 0 4rem;
+  }
+  .heroi-onda {
+    position: absolute; bottom: -20%; right: -10%;
+    width: 70vw; height: 70vw; max-width: 700px; max-height: 700px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(30,158,114,0.15) 0%, rgba(14,110,140,0.1) 50%, transparent 70%);
+    animation: pulse 6s ease-in-out infinite;
+  }
+  .heroi-onda2 {
+    position: absolute; top: -15%; left: -15%;
+    width: 50vw; height: 50vw; max-width: 500px; max-height: 500px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(14,110,140,0.12) 0%, transparent 70%);
+    animation: pulse 8s ease-in-out infinite reverse;
+  }
+  @keyframes pulse { 0%,100%{transform:scale(1)} 50%{transform:scale(1.08)} }
+
+  /* .heroi-conteudo definido na seção HERO 2 COLUNAS abaixo */
+  .heroi-emblema {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    background: rgba(94,207,177,0.15); border: 1px solid rgba(94,207,177,0.3);
+    color: var(--aqua); padding: 0.4rem 1rem; border-radius: 100px;
+    font-size: 0.8rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase;
+    margin-bottom: 2rem;
+    animation: fadeUp 0.6s ease both;
+  }
+
+  h1 {
+    font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800;
+    font-size: clamp(2.8rem, 7vw, 5.5rem);
+    line-height: 1; letter-spacing: -0.03em;
+    color: var(--white); margin-bottom: 1.5rem;
+    animation: fadeUp 0.6s 0.1s ease both;
+  }
+  h1 em { font-style: italic; color: var(--aqua); }
+
+  .heroi-subtitulo {
+    font-size: clamp(1rem, 2vw, 1.2rem); color: rgba(255,255,255,0.7);
+    max-width: 540px; line-height: 1.5; margin-bottom: 2.5rem;
+    animation: fadeUp 0.6s 0.2s ease both;
+  }
+  .heroi-subtitulo strong { color: var(--aqua); font-weight: 600; }
+
+  .heroi-acoes { display: flex; gap: 1rem; flex-wrap: wrap; animation: fadeUp 0.6s 0.3s ease both; }
+  .btn-primario {
+    background: var(--lake); color: var(--white);
+    padding: 0.9rem 2rem; border-radius: 100px; border: none;
+    font-family: 'DM Sans', sans-serif; font-size: 1rem; font-weight: 600;
+    cursor: pointer; text-decoration: none;
+    transition: all 0.25s; display: inline-block;
+    box-shadow: 0 8px 30px rgba(26,158,114,0.4);
+  }
+  .btn-primario:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(26,158,114,0.5); background: #22b882; }
+  .btn-contorno {
+    background: transparent; color: var(--white);
+    padding: 0.9rem 2rem; border-radius: 100px;
+    border: 1px solid rgba(255,255,255,0.25);
+    font-family: 'DM Sans', sans-serif; font-size: 1rem; font-weight: 600;
+    cursor: pointer; text-decoration: none; transition: all 0.25s; display: inline-block;
+  }
+  .btn-contorno:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.5); }
+
+  .heroi-estatisticas {
+    display: flex; gap: 2.5rem; margin-top: 4rem; flex-wrap: wrap;
+    animation: fadeUp 0.6s 0.4s ease both;
+  }
+  .estatistica { border-left: 2px solid var(--aqua); padding-left: 1rem; }
+  .estatistica-numero { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 2rem; font-weight: 700; color: var(--white); }
+  .estatistica-rotulo { font-size: 0.8rem; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 0.05em; }
+
+  @keyframes fadeUp { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:translateY(0)} }
+
+  /* ── SECTIONS COMMON ── */
+  section { padding: 6rem 0; }
+  .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+  .secao-rotulo {
+    font-size: 0.75rem; font-weight: 700; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--lake); margin-bottom: 1rem;
+  }
+  h2 {
+    font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800;
+    font-size: clamp(2rem, 4vw, 3rem); line-height: 1;
+    letter-spacing: -0.02em; margin-bottom: 1.2rem;
+  }
+  .secao-sub { font-size: 1.1rem; color: var(--muted); line-height: 1.5; max-width: 560px; }
+
+  /* ── PROBLEMA ── */
+  .problema { background: var(--sand); }
+  .problema h2 { color: var(--deep); }
+  .problema-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem; margin-top: 3rem;
+  }
+  @media(max-width:899px){ .problema-grid { grid-template-columns: 1fr; } }
+  .problema-card {
+    background: var(--white); border-radius: 16px; padding: 2rem;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+    transition: transform 0.2s;
+  }
+  .problema-card:hover { transform: translateY(-4px); }
+  .problema-icon { font-size: 2rem; margin-bottom: 1rem; }
+  .problema-card h3 { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.1rem; font-weight: 700; margin-bottom: 0.5rem; color: var(--deep); }
+  .problema-card p { font-size: 0.95rem; color: var(--muted); line-height: 1.5; }
+
+  /* ── O QUE É ── */
+  .oque { background: var(--deep); color: var(--white); }
+  .oque h2 { color: var(--white); }
+  .oque .secao-sub { color: rgba(255,255,255,0.65); max-width: 640px; }
+  .oque-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 3rem; }
+  @media(max-width:899px){ .oque-grid{grid-template-columns:1fr} }
+  .oque-card {
+    background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 20px; padding: 2.5rem;
+  }
+  .oque-card-icon { font-size: 2.5rem; margin-bottom: 1.2rem; }
+  .oque-card h3 { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.4rem; color: var(--aqua); margin-bottom: 0.7rem; }
+  .oque-card p { color: rgba(255,255,255,0.65); line-height: 1.5; }
+
+  /* ── MAPA DO LAGO ── */
+  .mapa-envoltorio {
+    margin-top: 3rem;
+    display: flex; gap: 1.5rem; align-items: center; flex-wrap: wrap;
+  }
+  .mapa-info { flex: 1; min-width: 260px; }
+  .mapa-info p { color: var(--muted); line-height: 1.5; margin-bottom: 1.5rem; }
+  .funcionalidades-secao .mapa-info p { color: rgba(255,255,255,0.7); }
+  .funcionalidades-secao .legenda-item { color: rgba(255,255,255,0.8); }
+  .mapa-legenda { display: flex; flex-direction: column; gap: 0.6rem; }
+  .legenda-item { display: flex; align-items: center; gap: 0.7rem; font-size: 0.9rem; color: var(--text); }
+  .legenda-ponto { width: 14px; height: 14px; border-radius: 50%; flex-shrink: 0; }
+  .ponto-livre { background: #2e7d32; }
+  .ponto-ocupado { background: #d32f2f; }
+  .ponto-selecionado { background: #1976d2; }
+
+  .mapa-imagem {
+    width: 360px; flex-shrink: 0;
+    border-radius: 24px;
+    filter: drop-shadow(0 40px 80px rgba(0,0,0,0.5));
+  }
+
+  /* ── COMO FUNCIONA ── */
+  .como { background: var(--sand); }
+  .como h2 { color: var(--deep); }
+  .como-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 3rem; }
+  @media(max-width:899px){ .como-grid{grid-template-columns:1fr} }
+  .como-trilha {
+    background: var(--white); border-radius: 20px; padding: 2.5rem;
+    position: relative; overflow: hidden;
+  }
+  .como-trilha::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px;
+  }
+  .trilha-icone { font-size: 2rem; margin-bottom: 1rem; }
+  .trilha-titulo { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; font-size: 1.2rem; color: var(--deep); margin-bottom: 1.5rem; }
+  .passos { display: flex; flex-direction: column; gap: 1rem; list-style: none; padding: 0; margin: 0; }
+  .passo { display: flex; gap: 1rem; align-items: center; }
+  .passo-numero {
+    width: 28px; height: 28px; border-radius: 50%;
+    background: var(--deep); color: var(--white);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.75rem; font-weight: 700; flex-shrink: 0;
+  }
+  .trilha-pescador .passo-numero { background: var(--lake); }
+  .passo-texto { font-size: 0.95rem; color: var(--text); line-height: 1.5; }
+  .passo-texto strong { color: var(--deep); font-weight: 600; }
+
+  /* ── FUNCIONALIDADES ── */
+  .funcionalidades-secao { background: var(--deep); }
+  .funcionalidades-secao h2 { color: var(--white); }
+  .funcionalidades-secao .secao-sub { color: rgba(255,255,255,0.6); }
+  .funcionalidades-grade {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem; margin-top: 3rem;
+  }
+  .funcionalidade-card {
+    background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 16px; padding: 1.8rem;
+    transition: all 0.2s;
+  }
+  .funcionalidade-card:hover { background: rgba(94,207,177,0.08); border-color: rgba(94,207,177,0.2); transform: translateY(-3px); }
+  .funcionalidade-icone { font-size: 1.8rem; margin-bottom: 1rem; }
+  .funcionalidade-card h3 { font-weight: 600; font-size: 1rem; color: var(--white); margin-bottom: 0.4rem; }
+  .funcionalidade-card p { font-size: 0.875rem; color: rgba(255,255,255,0.7); line-height: 1.5; }
+
+  /* ── DEPOIMENTOS ── */
+  .depoimentos { background: var(--sand); }
+  .depoimentos h2 { color: var(--deep); }
+  .depoimentos-grade { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 3rem; }
+  .depoimento-card {
+    background: var(--white); border-radius: 20px; padding: 2rem;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+    position: relative;
+  }
+  .depoimento-texto { font-size: 0.975rem; color: var(--text); line-height: 1.5; margin-bottom: 1.5rem; position: relative; z-index: 1; }
+  .depoimento-autor { display: flex; align-items: center; gap: 0.8rem; background: none; padding: 0; border: none; }
+  .depoimento-avatar {
+    width: 42px; height: 42px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--water), var(--lake));
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700; color: white; font-size: 0.9rem; flex-shrink: 0;
+  }
+  .depoimento-nome { font-weight: 600; font-size: 0.9rem; color: var(--deep); font-style: normal; }
+  .depoimento-info { font-size: 0.8rem; color: var(--muted); }
+  .depoimento-estrelas { color: #f5a623; font-size: 0.8rem; margin-top: 0.1rem; }
+
+  /* ── FORMULÁRIO ── */
+  .formulario {
+    background: linear-gradient(135deg, var(--deep) 0%, #0a4d65 100%);
+    position: relative; overflow: hidden;
+  }
+  .formulario::before {
+    content: ''; position: absolute; bottom: -30%; right: -15%;
+    width: 60vw; height: 60vw; max-width: 600px; max-height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(26,158,114,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .formulario-interno { max-width: 700px; margin: 0 auto; text-align: center; position: relative; z-index: 1; }
+  .formulario-interno h2 { color: var(--white); margin-bottom: 0.8rem; }
+  .formulario-interno .secao-sub { color: rgba(255,255,255,0.65); margin: 0 auto 3rem; text-align: center; }
+  .formulario-caixa {
+    background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 24px; padding: 2.5rem;
+    backdrop-filter: blur(10px);
+  }
+  .formulario-grade { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+  @media(max-width:899px){ .formulario-grade{grid-template-columns:1fr} }
+  .formulario-grupo { display: flex; flex-direction: column; gap: 0.4rem; text-align: left; }
+  .formulario-grupo.full { grid-column: 1 / -1; }
+  label { font-size: 0.8rem; font-weight: 600; color: rgba(255,255,255,0.7); letter-spacing: 0.03em; }
+  input, select {
+    background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 10px; padding: 0.8rem 1rem;
+    color: var(--white); font-family: 'DM Sans', sans-serif; font-size: 0.95rem;
+    outline: none; transition: all 0.2s; width: 100%;
+    line-height: 1.5; box-sizing: border-box;
+  }
+  select {
+    appearance: none; -webkit-appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='rgba(255,255,255,0.5)' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    padding-right: 2.5rem;
+  }
+  input::placeholder { color: rgba(255,255,255,0.35); }
+  input:focus, select:focus { border-color: var(--aqua); background: rgba(255,255,255,0.12); }
+  select option { background: var(--deep); color: var(--white); }
+  .formulario-enviar {
+    grid-column: 1 / -1; margin-top: 0.5rem;
+    background: var(--lake); color: var(--white); border: none;
+    padding: 0.9rem 2rem; border-radius: 100px;
+    width: fit-content; display: block; margin-left: auto; margin-right: auto;
+    font-family: 'DM Sans', sans-serif; font-size: 1rem; font-weight: 600;
+    cursor: pointer; transition: all 0.25s;
+    box-shadow: 0 8px 30px rgba(26,158,114,0.4);
+  }
+  .formulario-enviar:hover { background: #22b882; transform: translateY(-2px); box-shadow: 0 12px 40px rgba(26,158,114,0.5); }
+  .formulario-aviso { grid-column: 1 / -1; font-size: 0.78rem; color: rgba(255,255,255,0.7); text-align: center; margin-top: 0.5rem; }
+
+  /* ── FOOTER ── */
+  footer { background: #040f14; color: rgba(255,255,255,0.6); padding: 4rem 0 0; }
+  .rodape-container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+  .rodape-topo {
+    display: grid; grid-template-columns: 2fr 1.5fr 1.5fr;
+    gap: 3rem; padding-bottom: 3rem;
+  }
+  .rodape-logo { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.35rem; font-weight: 800; color: var(--aqua); letter-spacing: -0.02em; margin-bottom: 0.6rem; }
+  .rodape-logo span { color: var(--white); }
+  .rodape-slogan { font-size: 0.875rem; color: rgba(255,255,255,0.6); line-height: 1.5; }
+  .rodape-coluna { display: flex; flex-direction: column; gap: 0.5rem; }
+  .rodape-coluna-titulo {
+    font-size: 0.68rem; font-weight: 700; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--white);
+    margin-bottom: 0.4rem;
+  }
+  .rodape-coluna a {
+    color: rgba(255,255,255,0.5); text-decoration: none;
+    font-size: 0.9rem; font-weight: 500; transition: color 0.2s;
+  }
+  .rodape-coluna a:hover { color: var(--aqua); }
+  .rodape-coluna-texto { font-size: 0.85rem; color: rgba(255,255,255,0.6); line-height: 1.5; margin-bottom: 0.5rem; }
+  .rodape-cta { color: var(--aqua) !important; font-weight: 600 !important; font-size: 0.875rem !important; }
+  .rodape-divisor { height: 1px; background: rgba(255,255,255,0.07); margin-top: 0; }
+  .rodape-base {
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 0.5rem; padding: 1.5rem 0;
+  }
+  .rodape-copyright { font-size: 0.78rem; }
+  .rodape-feito { font-size: 0.78rem; }
+  @media(max-width:899px){
+    .rodape-topo { grid-template-columns: 1fr; gap: 2rem; }
+    .rodape-container { padding: 0 16px; }
+  }
+
+  /* ── ANTES / DEPOIS ── */
+  .antesdepois { background: var(--white); }
+  .antesdepois h2 { color: var(--deep); }
+  .antesdepois-grade {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 1.5rem; margin-top: 3rem;
+  }
+  @media(max-width:899px){ .antesdepois-grade { grid-template-columns: 1fr; } }
+  .antesdepois-col {
+    border-radius: 20px; padding: 2.5rem;
+  }
+  .antesdepois-antes { background: #fff5f5; border-top-color: var(--red); }
+  .antesdepois-depois { background: #f0faf5; border-top-color: var(--lake); }
+  .antesdepois-cabecalho {
+    display: flex; align-items: center; gap: 0.8rem; margin-bottom: 1.8rem;
+  }
+  .antesdepois-cabecalho h3 {
+    font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.25rem; font-weight: 700;
+  }
+  .antesdepois-antes .antesdepois-cabecalho h3 { color: #c0392b; }
+  .antesdepois-depois .antesdepois-cabecalho h3 { color: var(--lake); }
+  .antesdepois-icone { font-size: 1.8rem; }
+  .antesdepois-col ul { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 0.75rem; }
+  .antesdepois-col li {
+    display: flex; align-items: center; gap: 0.75rem;
+    font-size: 0.95rem; line-height: 1.4;
+  }
+  .antesdepois-antes li { color: #7a2020; }
+  .antesdepois-depois li { color: #145c38; }
+  .antesdepois-col li::before {
+    content: ''; width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0;
+  }
+  .antesdepois-antes li::before { background: var(--red); }
+  .antesdepois-depois li::before { background: var(--lake); }
+
+  /* ── SCROLL REVEAL ── */
+  .revelar { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .revelar.visivel { opacity: 1; transform: translateY(0); }
+
+  /* ── HERO 2 COLUNAS ── */
+  .heroi-conteudo {
+    max-width: 1200px; margin: 0 auto; width: 100%; position: relative; z-index: 1; padding: 0 24px;
+    display: flex; align-items: center; gap: 3.5rem;
+  }
+  .heroi-texto { flex: 1; min-width: 0; }
+  .heroi-mockup { flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
+
+  /* ── HERO CARROSSEL ── */
+  .heroi-carrossel {
+    width: 360px;
+    animation: fadeUp 0.7s 0.3s ease both;
+    position: relative;
+  }
+  .carrossel-trilho {
+    display: grid; overflow: hidden;
+    border-radius: 24px;
+    filter: drop-shadow(0 40px 80px rgba(0,0,0,0.5));
+  }
+  .carrossel-slide {
+    grid-area: 1 / 1;
+    width: 100%; height: auto; display: block;
+    border-radius: 24px;
+    transform: translateX(100%);
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform;
+  }
+  .carrossel-slide.ativo {
+    transform: translateX(0);
+  }
+  .carrossel-slide.saindo {
+    transform: translateX(-105%);
+  }
+  .carrossel-pontos {
+    display: flex; justify-content: center; gap: 8px;
+    margin-top: 16px;
+  }
+  .carrossel-ponto {
+    width: 9px; height: 9px; border-radius: 50%;
+    background: rgba(255,255,255,0.25);
+    border: none; cursor: pointer; padding: 0;
+    transition: background 0.25s, transform 0.25s;
+  }
+  .carrossel-ponto.ativo {
+    background: var(--aqua); transform: scale(1.4);
+  }
+
+  /* ── CALCULADORA ── */
+  .calculadora { background: var(--white); }
+  .calculadora h2 { color: var(--deep); }
+  .calculadora .container { max-width: 700px; text-align: center; }
+  .calculadora .container .secao-sub { margin-left: auto; margin-right: auto; }
+  .calc-envoltorio { text-align: left; }
+  .calc-envoltorio {
+    max-width: 700px; margin: 3rem auto 0;
+    background: #fff; border-radius: 24px; padding: 2.5rem;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.075);
+  }
+  .calc-grade {
+    display: grid; grid-template-columns: 1fr 1fr 1fr;
+    gap: 1rem; margin-bottom: 1.5rem; align-items: end;
+  }
+  .calc-grupo { display: flex; flex-direction: column; gap: 0.4rem; }
+  .calc-grupo label { font-size: 0.78rem; font-weight: 600; color: var(--deep); line-height: 1.3; }
+  .calc-grupo input {
+    background: white; border: 2px solid rgba(0,0,0,0.08);
+    border-radius: 10px; padding: 0.75rem 0.9rem;
+    color: var(--text); font-family: 'DM Sans', sans-serif; font-size: 0.95rem;
+    outline: none; transition: border-color 0.2s; width: 100%;
+  }
+  .calc-grupo input:focus { border-color: var(--lake); }
+  .calc-btn {
+    display: block; width: fit-content; margin: 0 auto;
+    background: var(--water); color: white;
+    border: none; padding: 0.9rem 2rem; border-radius: 100px;
+    font-family: 'DM Sans', sans-serif; font-size: 1rem; font-weight: 600;
+    cursor: pointer; transition: all 0.2s;
+  }
+  .calc-btn:hover { background: #0a85a8; transform: translateY(-1px); }
+  .calc-resultado {
+    margin-top: 1.5rem; text-align: center;
+    background: white; border-radius: 16px; padding: 1.5rem;
+    display: none;
+  }
+  .calc-resultado.visivel { display: block; }
+  .calc-valor-perdido {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 2rem; font-weight: 800;
+  }
+  .calc-valor-texto { font-size: 0.875rem; color: var(--muted); margin-top: 0.3rem; }
+  .calc-cta {
+    margin-top: 1rem; font-size: 0.875rem; color: var(--lake); font-weight: 600;
+  }
+  .calc-resultado-valores {
+    display: grid; grid-template-columns: 1fr auto 1fr auto 1fr;
+    align-items: center; gap: 0.5rem 1rem;
+    margin-bottom: 0.5rem; text-align: center;
+  }
+  .calc-separador { font-size: 1.5rem; color: var(--muted); line-height: 1; }
+  .calc-erro { font-size: 0.75rem; color: var(--red); display: block; }
+  @media(max-width:699px) {
+    .calc-grade { grid-template-columns: 1fr; align-items: start; }
+    .calc-envoltorio { padding: 1.5rem; }
+    .calc-resultado-valores { grid-template-columns: 1fr; gap: 1rem; }
+    .calc-separador { display: none; }
+  }
+
+  /* ── FAQ ── */
+  .faq { background: var(--white); }
+  .faq h2 { color: var(--deep); }
+  .faq .container { max-width: 700px; text-align: center; }
+  .faq-lista { max-width: 700px; margin: 3rem auto 0; display: flex; flex-direction: column; gap: 0.75rem; }
+  .faq-item {
+    background: var(--white); border-radius: 14px; overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.075);
+  }
+  .faq-pergunta {
+    width: 100%; background: none; border: none; cursor: pointer;
+    padding: 1.2rem 1.5rem; display: flex; justify-content: space-between; align-items: center;
+    font-family: 'DM Sans', sans-serif; font-size: 0.975rem; font-weight: 600;
+    color: var(--deep); text-align: left; transition: background 0.2s; gap: 1rem;
+  }
+  .faq-pergunta:hover { background: var(--foam); }
+  .faq-icone { font-size: 1.1rem; color: var(--lake); transition: transform 0.3s; flex-shrink: 0; }
+  .faq-item.aberto .faq-icone { transform: rotate(45deg); }
+  .faq-resposta {
+    max-height: 0; overflow: hidden;
+    transition: max-height 0.35s ease, padding 0.35s;
+    padding: 0 1.5rem;
+  }
+  .faq-item.aberto .faq-resposta { max-height: 600px; padding: 1.3rem 1.5rem; }
+  .faq-resposta p { font-size: 0.95rem; color: var(--muted); line-height: 1.65; }
+
+  /* ── CREDIBILIDADE (strip em O QUE É) ── */
+  .oque-credibilidade {
+    display: flex; gap: 2rem; align-items: center; flex-wrap: wrap;
+    margin-top: 2.5rem; padding-top: 2rem;
+    font-size: 0.85rem; color: rgba(255,255,255,0.45);
+  }
+  .oque-credibilidade span { display: flex; align-items: center; gap: 0.4rem; }
+
+  /* ── DEPOIMENTOS REFRAME ── */
+  .depoimentos-demanda {
+    background: var(--deep); border-radius: 16px; padding: 2rem;
+    max-width: 700px;
+    margin: 3rem auto 0;
+  }
+  .depoimentos-demanda p {
+    font-size: 1.05rem; color: rgba(255,255,255,0.8); line-height: 1.6;
+  }
+  .depoimentos-demanda strong { color: var(--aqua); }
+  .depoimentos-demanda a { color: var(--aqua); font-weight: 600; text-decoration: none; }
+  .depoimentos-demanda a:hover { text-decoration: underline; }
+  .depoimento-relato-badge {
+    display: inline-block; font-size: 0.7rem; font-weight: 700;
+    letter-spacing: 0.06em; text-transform: uppercase;
+    color: var(--muted); margin-bottom: 0.75rem;
+  }
+
+  /* ── MOBILE (MUI xs→md: max-width 899px) ── */
+  @media(max-width:899px){
+    section { padding: 4rem 0; }
+    .container { padding: 0 16px; }
+    .heroi-conteudo { padding: 0 16px; flex-direction: column; }
+    .heroi-mockup { display: block; width: 100%; }
+    .heroi-carrossel { width: 100%; }
+    .nav-envoltorio { padding: 0 16px; }
+    .nav-separador { display: none; }
+    .nav-menu { display: none; }
+    .nav-direita .nav-acao { display: none; }
+    .nav-hamburguer { display: flex; }
+    .heroi { padding: 7rem 0 5rem; }
+    .carrossel-trilho { filter: drop-shadow(0 20px 40px rgba(0,0,0,0.45)); }
+    .heroi-estatisticas { gap: 1.5rem; }
+    .mapa-envoltorio { flex-direction: column; }
+    .mapa-imagem { width: 100%; filter: drop-shadow(0 20px 40px rgba(0,0,0,0.45)); }
+    .formulario-caixa { padding: 1.5rem; }
+    .oque-credibilidade { gap: 1rem; }
+    .calc-grade { grid-template-columns: 1fr; }
+    .btn-primario, .btn-contorno { width: 100%; display: block; text-align: center; }
+    .formulario-enviar { width: 100%; }
+    .calc-btn { width: 100%; }
+  }
+  /* ── DESKTOP (MUI md+: min-width 900px) ── */
+  @media(min-width:900px){
+    .nav-celular { display: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav aria-label="Navegação principal">
+  <div class="nav-envoltorio">
+    <a href="#" class="nav-logo" aria-label="PeskPASS — página inicial">Pesk<span>PASS</span></a>
+    <ul class="nav-menu" role="list">
+      <li><a href="#oque">Solução</a></li>
+      <li><a href="#calculadora">Calculadora</a></li>
+      <li><a href="#como-funciona">Como funciona</a></li>
+      <li><a href="#funcionalidades">Funcionalidades</a></li>
+      <li><a href="#faq">FAQ</a></li>
+    </ul>
+    <div class="nav-direita">
+      <a href="#cadastro" class="nav-acao">Cadastrar pesqueiro</a>
+      <button class="nav-hamburguer" id="hamburguer" aria-label="Abrir menu" aria-expanded="false" aria-controls="menu-celular">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+  <div class="nav-celular" id="menu-celular" aria-hidden="true">
+    <a href="#oque" onclick="fecharMenu()">Solução</a>
+    <a href="#calculadora" onclick="fecharMenu()">Calculadora</a>
+    <a href="#como-funciona" onclick="fecharMenu()">Como funciona</a>
+    <a href="#funcionalidades" onclick="fecharMenu()">Recursos</a>
+    <a href="#faq" onclick="fecharMenu()">FAQ</a>
+    <a href="#cadastro" class="nav-acao" onclick="fecharMenu()">Cadastrar pesqueiro</a>
+  </div>
+</nav>
+
+<main>
+
+<!-- HERO -->
+<section class="heroi">
+  <div class="heroi-onda"></div>
+  <div class="heroi-onda2"></div>
+  <div class="heroi-conteudo">
+    <div class="heroi-texto">
+      <div class="heroi-emblema">Pré-lançamento aberto para donos de pesqueiro</div>
+      <h1>Chega de filas,<br>desistências<br>e <em>prejuízos</em>.</h1>
+      <p class="heroi-subtitulo">Reserva feita, <strong>pagamento garantido</strong>, dia planejado. Simples assim para você, dono de pesqueiro. Simples assim para o seu cliente, pescador.</p>
+      <div class="heroi-acoes">
+        <a href="#cadastro" class="btn-primario">Cadastrar meu pesqueiro →</a>
+        <a href="#como-funciona" class="btn-contorno">Ver como funciona</a>
+      </div>
+      <div class="heroi-estatisticas">
+        <div class="estatistica">
+          <div class="estatistica-numero">17.000+</div>
+          <div class="estatistica-rotulo">Pesqueiros no Brasil</div>
+        </div>
+        <div class="estatistica">
+          <div class="estatistica-numero">100</div>
+          <div class="estatistica-rotulo">Vagas no pré-lançamento</div>
+        </div>
+        <div class="estatistica">
+          <div class="estatistica-numero">5 min</div>
+          <div class="estatistica-rotulo">Para configurar e começar</div>
+        </div>
+      </div>
+    </div>
+    <div class="heroi-mockup">
+      <div class="heroi-carrossel" id="heroi-carrossel">
+        <div class="carrossel-trilho">
+          <img src="assets/hero-1.png" alt="Tela do PeskPASS — 1" class="carrossel-slide ativo" loading="eager">
+          <img src="assets/hero-2.png" alt="Tela do PeskPASS — 2" class="carrossel-slide" loading="lazy">
+          <img src="assets/hero-3.png" alt="Tela do PeskPASS — 3" class="carrossel-slide" loading="lazy">
+          <img src="assets/hero-4.png" alt="Tela do PeskPASS — 4" class="carrossel-slide" loading="lazy">
+          <img src="assets/hero-5.png" alt="Tela do PeskPASS — 5" class="carrossel-slide" loading="lazy">
+          <img src="assets/hero-6.png" alt="Tela do PeskPASS — 6" class="carrossel-slide" loading="lazy">
+          <img src="assets/hero-7.png" alt="Tela do PeskPASS — 7" class="carrossel-slide" loading="lazy">
+          <img src="assets/hero-8.png" alt="Tela do PeskPASS — 8" class="carrossel-slide" loading="lazy">
+          <img src="assets/hero-9.png" alt="Tela do PeskPASS — 9" class="carrossel-slide" loading="lazy">
+        </div>
+        <div class="carrossel-pontos" id="carrossel-pontos" aria-label="Navegar entre telas"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROBLEMA -->
+<section class="problema" id="problema">
+  <div class="container revelar">
+    <p class="secao-rotulo">A realidade do pesqueiro</p>
+    <h2>A desorganização tem preço.<br>E você é quem paga.</h2>
+    <p class="secao-sub">Sem reserva, o dia começa no improviso. E quando o pescador chega e encontra fila, lotação e caos — a frustração dele vira o seu problema.</p>
+    <div class="problema-grid">
+      <div class="problema-card revelar">
+        <div class="problema-icon" aria-hidden="true"><span class="material-symbols-rounded">warning</span></div>
+        <h3>Fila e confusão na entrada</h3>
+        <p>Todo mundo chega ao mesmo tempo, sem controle de horário. O dia começa tenso para você e para o cliente.</p>
+      </div>
+      <div class="problema-card revelar">
+        <div class="problema-icon" aria-hidden="true"><span class="material-symbols-rounded">event_busy</span></div>
+        <h3>Vaga perdida sem aviso</h3>
+        <p>O pescador confirma e não aparece. Você perdeu a vaga, preparou a estrutura e não recebeu nada.</p>
+      </div>
+      <div class="problema-card revelar">
+        <div class="problema-icon" aria-hidden="true"><span class="material-symbols-rounded">trending_down</span></div>
+        <h3>Receita imprevisível</h3>
+        <p>Sem reserva antecipada, você nunca sabe quantas pessoas vêm no sábado. Sem previsão, sem planejamento.</p>
+      </div>
+      <div class="problema-card revelar">
+        <div class="problema-icon" aria-hidden="true"><span class="material-symbols-rounded">chat_bubble</span></div>
+        <h3>Atendimento repetitivo</h3>
+        <p>Horário, regras, o que pode trazer, quanto custa — as mesmas perguntas chegam todo dia no seu WhatsApp.</p>
+      </div>
+      <div class="problema-card revelar">
+        <div class="problema-icon" aria-hidden="true"><span class="material-symbols-rounded">person_search</span></div>
+        <h3>Sem dados de clientes</h3>
+        <p>Quem são seus melhores clientes? Quantas vezes voltaram? Você não sabe — e não fideliza ninguém.</p>
+      </div>
+      <div class="problema-card revelar">
+        <div class="problema-icon" aria-hidden="true"><span class="material-symbols-rounded">sentiment_very_dissatisfied</span></div>
+        <h3>Conflitos e reclamações</h3>
+        <p>Sem regras claras antes da chegada, qualquer desentendimento na hora vira problema seu.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- O QUE É -->
+<section class="oque" id="oque">
+  <div class="container revelar">
+    <p class="secao-rotulo" style="color:var(--aqua)">Criado por pescadores para pesqueiros</p>
+    <h2>Um sistema feito sob medida para a<br> realidade do pesqueiro brasileiro</h2>
+    <p class="secao-sub">Reservas online e pagamento antecipado — sem instalação, sem complicação tecnológica.</p>
+    <div class="oque-grid">
+      <div class="oque-card revelar">
+        <div class="oque-card-icon" aria-hidden="true"><span class="material-symbols-rounded">storefront</span></div>
+        <h3>Para você, dono de pesqueiro</h3>
+        <p>Painel completo para ver reservas do dia, configurar o mapa do lago, criar pacotes e acompanhar receita em tempo real. Você sabe quem vem, quando vem — e o dinheiro já está na conta antes de abrir o portão.</p>
+      </div>
+      <div class="oque-card revelar">
+        <div class="oque-card-icon" aria-hidden="true"><span class="material-symbols-rounded">water</span></div>
+        <h3>Seu cliente chega pronto para pescar</h3>
+        <p>O pescador reserva o espaço favorito, escolhe o pacote e paga antes de sair de casa. Chega no horário desejado, sem fila, sem discussão na entrada e sem surpresa para você.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CALCULADORA -->
+<section class="calculadora" id="calculadora">
+  <div class="container revelar">
+    <p class="secao-rotulo">Veja o potencial do seu pesqueiro</p>
+    <h2>Quanto você pode faturar<br> com reservas antecipadas?</h2>
+    <p class="secao-sub">Preencha com o que você já sabe e veja o potencial máximo do seu pesqueiro com lotação completa.</p>
+    <div class="calc-envoltorio">
+      <div class="calc-grade">
+        <div class="calc-grupo">
+          <label for="calc-vagas">Número de vagas</label>
+          <input id="calc-vagas" inputmode="numeric">
+          <span class="calc-erro" id="erro-vagas"></span>
+        </div>
+        <div class="calc-grupo">
+          <label for="calc-valor">Valor da entrada (R$)</label>
+          <input id="calc-valor" inputmode="decimal">
+          <span class="calc-erro" id="erro-valor"></span>
+        </div>
+        <div class="calc-grupo">
+          <label for="calc-dias">Dias abertos por semana</label>
+          <input id="calc-dias" inputmode="numeric">
+          <span class="calc-erro" id="erro-dias"></span>
+        </div>
+      </div>
+      <button class="calc-btn" onclick="calcularPotencial()">Ver o potencial do meu pesqueiro</button>
+      <div class="calc-resultado" id="calc-resultado">
+        <div class="calc-resultado-valores">
+          <div>
+            <div class="calc-valor-perdido" id="calc-valor-dia" style="color:var(--aqua)">R$ 0</div>
+            <div class="calc-valor-texto">por dia</div>
+          </div>
+          <div class="calc-separador">·</div>
+          <div>
+            <div class="calc-valor-perdido" id="calc-valor-semana" style="color:var(--lake)">R$ 0</div>
+            <div class="calc-valor-texto">por semana</div>
+          </div>
+          <div class="calc-separador">·</div>
+          <div>
+            <div class="calc-valor-perdido" id="calc-valor-mes" style="color:var(--water)">R$ 0</div>
+            <div class="calc-valor-texto">por mês</div>
+          </div>
+        </div>
+        <div class="calc-valor-texto" style="margin-top:0.75rem">Esse é o potencial máximo com lotação completa. Com reservas pagas antecipadamente, o PeskPASS te aproxima dele — e o dinheiro entra antes de qualquer pescador chegar.</div>
+        <div class="calc-cta">→ <a href="#cadastro" style="color:var(--lake);font-weight:600;text-decoration:none">Quero cadastrar meu pesqueiro</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMO FUNCIONA -->
+<section class="como" id="como-funciona">
+  <div class="container revelar">
+    <p class="secao-rotulo">Simples assim</p>
+    <h2>Uma plataforma,<br>dois caminhos</h2>
+    <p class="secao-sub">Cinco minutos para você configurar. Zero complicação para o pescador reservar.</p>
+    <div class="como-grid">
+      <div class="como-trilha trilha-dono revelar">
+        <div class="trilha-icone" aria-hidden="true"><span class="material-symbols-rounded">storefront</span></div>
+        <div class="trilha-titulo">Para o pesqueiro</div>
+        <ol class="passos">
+          <li class="passo"><div class="passo-numero">1</div><div class="passo-texto"><strong>Cadastra o pesqueiro</strong> com fotos, descrição e localização</div></li>
+          <li class="passo"><div class="passo-numero">2</div><div class="passo-texto"><strong>Demarca os espaços</strong> no mapa interativo do lago</div></li>
+          <li class="passo"><div class="passo-numero">3</div><div class="passo-texto"><strong>Cria pacotes</strong> — café da manhã, almoço, combos, etc</div></li>
+          <li class="passo"><div class="passo-numero">4</div><div class="passo-texto"><strong>Recebe reservas e pagamentos</strong> antecipados pelo painel</div></li>
+          <li class="passo"><div class="passo-numero">5</div><div class="passo-texto"><strong>Compartilha o link do PeskPASS</strong> no seu Site, Instagram e WhatsApp e seus clientes reservam direto por lá</div></li>
+        </ol>
+      </div>
+      <div class="como-trilha trilha-pescador revelar">
+        <div class="trilha-icone" aria-hidden="true"><span class="material-symbols-rounded">water</span></div>
+        <div class="trilha-titulo">Para o pescador</div>
+        <ol class="passos">
+          <li class="passo"><div class="passo-numero">1</div><div class="passo-texto"><strong>Acessa o link do PeskPASS</strong> que você compartilhou</div></li>
+          <li class="passo"><div class="passo-numero">2</div><div class="passo-texto"><strong>Escolhe a vaga</strong> no mapa do lago e o pacote desejado</div></li>
+          <li class="passo"><div class="passo-numero">3</div><div class="passo-texto"><strong>Paga e confirma</strong> — vaga assegurada, sem surpresas na chegada</div></li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ANTES / DEPOIS -->
+<section class="antesdepois" id="transformacao">
+  <div class="container revelar">
+    <p class="secao-rotulo">A transformação</p>
+    <h2>Antes e depois<br>do PeskPASS</h2>
+    <div class="antesdepois-grade">
+      <div class="antesdepois-col antesdepois-antes revelar">
+        <div class="antesdepois-cabecalho">
+          <span class="antesdepois-icone" aria-hidden="true"><span class="material-symbols-rounded">sentiment_dissatisfied</span></span>
+          <h3>Sem PeskPASS</h3>
+        </div>
+        <ul>
+          <li>Controle manual das vagas</li>
+          <li>Fila e confusão na entrada</li>
+          <li>Atendimento repetitivo no WhatsApp</li>
+          <li>Vagas perdidas sem pagamento</li>
+          <li>Ocupação desorganizada</li>
+          <li>Pescadores desconhecem as regras</li>
+          <li>Conflitos e reclamações</li>
+          <li>Pescador frustrado que não volta</li>
+          <li>Sem dados dos clientes</li>
+          <li>Receita imprevisível</li>
+        </ul>
+      </div>
+      <div class="antesdepois-col antesdepois-depois revelar">
+        <div class="antesdepois-cabecalho">
+          <span class="antesdepois-icone" aria-hidden="true"><span class="material-symbols-rounded">check_circle</span></span>
+          <h3>Com PeskPASS</h3>
+        </div>
+        <ul>
+          <li>Reservas organizadas por horário</li>
+          <li>Pagamento garantido antes de abrir o portão</li>
+          <li>Informações centralizadas na plataforma</li>
+          <li>Cliente chega no horário marcado</li>
+          <li>Ocupação controlada em tempo real</li>
+          <li>Regras exibidas antes da reserva</li>
+          <li>Menos conflitos e reclamações</li>
+          <li>Base de clientes própria</li>
+          <li>Previsão financeira real</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FUNCIONALIDADES -->
+<section class="funcionalidades-secao" id="funcionalidades">
+  <div class="container revelar">
+    <p class="secao-rotulo" style="color:var(--aqua)">Tudo que você precisa</p>
+    <h2 style="color:var(--white)">Funcionalidades</h2>
+    <!-- Mapa do lago -->
+    <div class="mapa-envoltorio revelar" style="margin-top:3rem">
+      <img src="assets/mapa-lago.png" alt="Mapa do lago no PeskPASS" class="mapa-imagem">
+      <div class="mapa-info">
+        <p class="secao-rotulo" style="color:var(--aqua)">Funcionalidade principal</p>
+        <p style="font-family:'Plus Jakarta Sans',sans-serif;font-size:1.4rem;font-weight:700;color:var(--white);margin-bottom:1rem;line-height:1.5">Mapa do Lago</p>
+        <p>A funcionalidade central do PeskPASS: cada pesqueiro cadastra o desenho do seu lago com todos os espaços demarcados. O pescador vê em tempo real quais vagas estão livres e reserva a que preferir.</p>
+        <p>
+          Lugar favorito ou cantinho da sorte?<br>
+          Tudo reservável com antecedência.
+        </p>
+        <div class="mapa-legenda">
+          <div class="legenda-item"><div class="legenda-ponto ponto-livre"></div> Vaga disponível</div>
+          <div class="legenda-item"><div class="legenda-ponto ponto-ocupado"></div> Vaga ocupada</div>
+          <div class="legenda-item"><div class="legenda-ponto ponto-selecionado"></div> Vaga selecionada</div>
+        </div>
+      </div>
+    </div>
+    <p class="secao-sub" style="margin-top:3rem">Uma plataforma completa, pensada para a realidade dos pesqueiros brasileiros.</p>
+    <div class="funcionalidades-grade">
+      <article class="funcionalidade-card revelar">
+        <div class="funcionalidade-icone" aria-hidden="true"><span class="material-symbols-rounded">map</span></div>
+        <h3>Mapa interativo do lago</h3>
+        <p>Cadastre seus espaços com localização exata. Pescadores escolhem onde sentar antes de sair de casa.</p>
+      </article>
+      <article class="funcionalidade-card revelar">
+        <div class="funcionalidade-icone" aria-hidden="true"><span class="material-symbols-rounded">inventory_2</span></div>
+        <h3>Pacotes personalizados</h3>
+        <p>Monte combos de day use com café, almoço, kit de pesca ou qualquer serviço do seu pesqueiro.</p>
+      </article>
+      <article class="funcionalidade-card revelar">
+        <div class="funcionalidade-icone" aria-hidden="true"><span class="material-symbols-rounded">payments</span></div>
+        <h3>Pagamento antecipado</h3>
+        <p>Receba antes mesmo do pescador chegar. Sem inadimplência, sem maquininha na entrada.</p>
+      </article>
+      <article class="funcionalidade-card revelar">
+        <div class="funcionalidade-icone" aria-hidden="true"><span class="material-symbols-rounded">bar_chart</span></div>
+        <h3>Painel completo</h3>
+        <p>Veja reservas do dia, receita do mês, taxa de ocupação e histórico detalhado em tempo real.</p>
+      </article>
+      <article class="funcionalidade-card revelar">
+        <div class="funcionalidade-icone" aria-hidden="true"><span class="material-symbols-rounded">group</span></div>
+        <h3>Histórico de clientes</h3>
+        <p>Saiba quem são seus clientes mais fiéis e quanto cada um já gastou no seu pesqueiro.</p>
+      </article>
+      <article class="funcionalidade-card revelar">
+        <div class="funcionalidade-icone" aria-hidden="true"><span class="material-symbols-rounded">share</span></div>
+        <h3>Link compartilhável</h3>
+        <p>Cole o link de reservas no seu Instagram, WhatsApp e site. Seus seguidores reservam direto.</p>
+      </article>
+      <article class="funcionalidade-card revelar">
+        <div class="funcionalidade-icone" aria-hidden="true"><span class="material-symbols-rounded">travel_explore</span></div>
+        <h3>Descoberta na plataforma</h3>
+        <p>Pescadores do Brasil todo encontram seu pesqueiro no PeskPASS com filtros de cidade, estrutura e avaliação.</p>
+      </article>
+      <article class="funcionalidade-card revelar">
+        <div class="funcionalidade-icone" aria-hidden="true"><span class="material-symbols-rounded">open_in_browser</span></div>
+        <h3>Web App</h3>
+        <p>Funciona direto no navegador do celular, sem precisar instalar nada. O pescador reserva em segundos, a qualquer hora.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- DEPOIMENTOS -->
+<section class="depoimentos" id="depoimentos">
+  <div class="container revelar">
+    <p class="secao-rotulo">O que pescadores dizem por aí</p>
+    <h2>Os pescadores já estão<br>pedindo isso — faz tempo.</h2>
+    <p class="secao-sub">Coletamos relatos de grupos de pesca esportiva e fóruns online. Esses não são clientes do PeskPASS — são pescadores descrevendo a realidade dos pesqueiros hoje. Seu pesqueiro pode ser a resposta que eles procuram.</p>
+    <div class="depoimentos-grade">
+      <article class="depoimento-card revelar">
+        <div class="depoimento-relato-badge">Grupo de pesca no Facebook</div>
+        <blockquote class="depoimento-texto">&ldquo;Rodava quase duas horas para chegar no meu pesqueiro favorito. Nas últimas vezes, a fila na entrada já estava tão grande que o desânimo começava antes mesmo de entrar. Depois de tantos anos indo quase todo fim de semana, acabei perdendo a vontade.&rdquo;</blockquote>
+        <footer class="depoimento-autor">
+          <div class="depoimento-avatar" aria-hidden="true">RM</div>
+          <div>
+            <cite class="depoimento-nome">R. M.</cite>
+            <div class="depoimento-info">Pescador · Campinas, SP</div>
+          </div>
+        </footer>
+      </article>
+      <article class="depoimento-card revelar">
+        <div class="depoimento-relato-badge">Fórum de pesca esportiva</div>
+        <blockquote class="depoimento-texto">&ldquo;Cansei de passar o dia cruzando linha. Nos finais de semana e feriados tem tanta gente na beira do lago que os peixes desaparecem com tanta movimentação na água. Hoje em dia só pesco nas férias ou durante a semana, quando consigo uma folga.&rdquo;</blockquote>
+        <footer class="depoimento-autor">
+          <div class="depoimento-avatar" aria-hidden="true">LC</div>
+          <div>
+            <cite class="depoimento-nome">L. C.</cite>
+            <div class="depoimento-info">Pescador · São Paulo, SP</div>
+          </div>
+        </footer>
+      </article>
+      <article class="depoimento-card revelar">
+        <div class="depoimento-relato-badge">Grupo de pesca no WhatsApp</div>
+        <blockquote class="depoimento-texto">&ldquo;Já vi discussão e até briga na abertura do portão. A gente sai de casa querendo relaxar, pescar e curtir o dia com a família, mas quando falta organização o passeio vira dor de cabeça e você volta pra casa com a sensação de ter perdido tempo e dinheiro.&rdquo;</blockquote>
+        <footer class="depoimento-autor">
+          <div class="depoimento-avatar" aria-hidden="true">CS</div>
+          <div>
+            <cite class="depoimento-nome">C. S.</cite>
+            <div class="depoimento-info">Pescador · Goiânia, GO</div>
+          </div>
+        </footer>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq" id="faq">
+  <div class="container revelar">
+    <p class="secao-rotulo">Tire suas dúvidas</p>
+    <h2>Dúvidas frequentes</h2>
+    <div class="faq-lista">
+      <div class="faq-item">
+        <button class="faq-pergunta" aria-expanded="false">
+          Quanto custa usar o PeskPASS?
+          <span class="faq-icone" aria-hidden="true"><span class="material-symbols-rounded" style="font-size:1.2rem">add</span></span>
+        </button>
+        <div class="faq-resposta">
+          <p>O cadastro é <strong>gratuito no pré-lançamento</strong>. Os 100 primeiros pesqueiros terão prioridade na definição das condições do lançamento. O modelo de monetização será anunciado antes do lançamento — quem entrar agora assegura condições especiais.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-pergunta" aria-expanded="false">
+          O pescador precisa instalar algum app?
+          <span class="faq-icone" aria-hidden="true"><span class="material-symbols-rounded" style="font-size:1.2rem">add</span></span>
+        </button>
+        <div class="faq-resposta">
+          <p>Não. O PeskPASS é um <strong>Web App</strong> — funciona direto no navegador do celular, sem download, sem cadastro complicado. O pescador acessa o link que você compartilha no seu Site, Instagram ou WhatsApp e reserva em segundos.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-pergunta" aria-expanded="false">
+          Como funciona o pagamento antecipado?
+          <span class="faq-icone" aria-hidden="true"><span class="material-symbols-rounded" style="font-size:1.2rem">add</span></span>
+        </button>
+        <div class="faq-resposta">
+          <p>O pescador paga no momento da reserva, direto pela plataforma. O valor é transferido para você conforme o cronograma de repasse. Sem maquininha na entrada, sem troco, sem inadimplência.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-pergunta" aria-expanded="false">
+          Funciona para pesqueiro pequeno?
+          <span class="faq-icone" aria-hidden="true"><span class="material-symbols-rounded" style="font-size:1.2rem">add</span></span>
+        </button>
+        <div class="faq-resposta">
+          <p>Sim. O PeskPASS foi pensado para todo tamanho de operação. Você cadastra quantos lagos e vagas quiser, sem limite.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-pergunta" aria-expanded="false">
+          É difícil de configurar?
+          <span class="faq-icone" aria-hidden="true"><span class="material-symbols-rounded" style="font-size:1.2rem">add</span></span>
+        </button>
+        <div class="faq-resposta">
+          <p>O cadastro leva cerca de 5 minutos. Você preenche as informações do pesqueiro, demarca as vagas no mapa do lago e cria seus pacotes. Nenhuma configuração técnica, nenhum programador necessário.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-pergunta" aria-expanded="false">
+          E se o cliente quiser cancelar?
+          <span class="faq-icone" aria-hidden="true"><span class="material-symbols-rounded" style="font-size:1.2rem">add</span></span>
+        </button>
+        <div class="faq-resposta">
+          <p>Você define sua própria política de cancelamento no cadastro do pesqueiro. O pescador visualiza as regras antes de confirmar a reserva — sem surpresas para nenhum dos lados.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-pergunta" aria-expanded="false">
+          O pesqueiro pode receber clientes sem reserva?
+          <span class="faq-icone" aria-hidden="true"><span class="material-symbols-rounded" style="font-size:1.2rem">add</span></span>
+        </button>
+        <div class="faq-resposta">
+          <p>Sim. O PeskPASS organiza sua operação, não a limita. Quem reservou pelo PeskPASS chega com o espaço confirmado e sem fila. Quem aparecer no pesqueiro sem reserva pode ocupar qualquer vaga ainda livre — o dono registra a ocupação na plataforma na hora, e o mapa atualiza em tempo real para nenhum outro pescador reservar o mesmo espaço.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FORMULÁRIO -->
+<section class="formulario" id="cadastro">
+  <div class="container">
+    <div class="formulario-interno revelar">
+      <p class="secao-rotulo" style="color:var(--aqua);text-align:center">Gratuito · Vagas limitadas por região</p>
+      <h2>Entre no pré-lançamento.<br>Sua região ainda tem lugar.</h2>
+      <p class="secao-sub">Apenas <strong style="color:var(--aqua)">100 pesqueiros</strong> entram no pré-lançamento. Os primeiros da sua região têm prioridade e condições exclusivas no lançamento.</p>
+      <div class="formulario-caixa">
+        <form onsubmit="enviarFormulario(event)">
+          <div class="formulario-grade">
+            <div class="formulario-grupo">
+              <label for="nome-responsavel">Nome do responsável *</label>
+              <input type="text" id="nome-responsavel" name="nome_responsavel" required>
+            </div>
+            <div class="formulario-grupo">
+              <label for="nome-pesqueiro">Nome do pesqueiro *</label>
+              <input type="text" id="nome-pesqueiro" name="nome_pesqueiro" required>
+            </div>
+            <div class="formulario-grupo">
+              <label for="cidade">Cidade *</label>
+              <input type="text" id="cidade" name="cidade" required>
+            </div>
+            <div class="formulario-grupo">
+              <label for="estado">Estado *</label>
+              <select id="estado" name="estado" required>
+                <option value="">Selecione</option>
+                <option value="AC">Acre</option>
+                <option value="AL">Alagoas</option>
+                <option value="AP">Amapá</option>
+                <option value="AM">Amazonas</option>
+                <option value="BA">Bahia</option>
+                <option value="CE">Ceará</option>
+                <option value="DF">Distrito Federal</option>
+                <option value="ES">Espírito Santo</option>
+                <option value="GO">Goiás</option>
+                <option value="MA">Maranhão</option>
+                <option value="MT">Mato Grosso</option>
+                <option value="MS">Mato Grosso do Sul</option>
+                <option value="MG">Minas Gerais</option>
+                <option value="PA">Pará</option>
+                <option value="PB">Paraíba</option>
+                <option value="PR">Paraná</option>
+                <option value="PE">Pernambuco</option>
+                <option value="PI">Piauí</option>
+                <option value="RJ">Rio de Janeiro</option>
+                <option value="RN">Rio Grande do Norte</option>
+                <option value="RS">Rio Grande do Sul</option>
+                <option value="RO">Rondônia</option>
+                <option value="RR">Roraima</option>
+                <option value="SC">Santa Catarina</option>
+                <option value="SP">São Paulo</option>
+                <option value="SE">Sergipe</option>
+                <option value="TO">Tocantins</option>
+              </select>
+            </div>
+            <div class="formulario-grupo full">
+              <label for="whatsApp">WhatsApp *</label>
+              <input type="tel" id="whatsApp" name="whatsApp" inputmode="tel" required>
+            </div>
+            <button type="submit" class="formulario-enviar">Cadastrar meu pesqueiro no pré-lançamento →</button>
+            <p class="formulario-aviso">Assim que confirmarmos sua região, você recebe acesso antecipado pelo WhatsApp. Seus dados não serão compartilhados. Sem spam.</p>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div class="rodape-container">
+    <div class="rodape-topo">
+      <div>
+        <div class="rodape-logo">Pesk<span>PASS</span></div>
+        <p class="rodape-slogan">O pesqueiro organizado<br>começa aqui.</p>
+      </div>
+      <nav class="rodape-coluna" aria-label="Links da plataforma">
+        <p class="rodape-coluna-titulo">Menu</p>
+        <a href="#problema">Problema</a>
+        <a href="#oque">Solução</a>
+        <a href="#calculadora">Calculadora</a>
+        <a href="#como-funciona">Como funciona</a>
+        <a href="#transformacao">Transformação</a>
+        <a href="#funcionalidades">Funcionalidades</a>
+        <a href="#depoimentos">Depoimentos</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+      <div class="rodape-coluna">
+        <p class="rodape-coluna-titulo">Pré-cadastro</p>
+        <p class="rodape-coluna-texto">Lançamento em breve. Cadastre seu pesqueiro e seja avisado em primeira mão.</p>
+        <a href="#cadastro" class="rodape-cta">Cadastrar meu pesqueiro →</a>
+      </div>
+    </div>
+    <div class="rodape-divisor"></div>
+    <div class="rodape-base">
+      <p class="rodape-copyright">© <span id="ano-copyright"></span> PeskPASS. Todos os direitos reservados.</p>
+      <p class="rodape-feito"><span class="material-symbols-rounded" style="font-size:0.85rem">water</span> Criado por pescadores para pesqueiros</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Burger menu
+  const hamburguer = document.getElementById('hamburguer');
+  const menuCelular = document.getElementById('menu-celular');
+  hamburguer.addEventListener('click', () => {
+    const isOpen = hamburguer.classList.toggle('open');
+    menuCelular.classList.toggle('open');
+    hamburguer.setAttribute('aria-expanded', isOpen);
+    hamburguer.setAttribute('aria-label', isOpen ? 'Fechar menu' : 'Abrir menu');
+    menuCelular.setAttribute('aria-hidden', !isOpen);
+  });
+  function fecharMenu() {
+    hamburguer.classList.remove('open');
+    menuCelular.classList.remove('open');
+    hamburguer.setAttribute('aria-expanded', 'false');
+    hamburguer.setAttribute('aria-label', 'Abrir menu');
+    menuCelular.setAttribute('aria-hidden', 'true');
+  }
+
+  // Revelar ao rolar
+  const elementosRevelar = document.querySelectorAll('.revelar');
+  const observador = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visivel'), i * 60);
+        observador.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  elementosRevelar.forEach(el => observador.observe(el));
+
+  // Copyright year
+  document.getElementById('ano-copyright').textContent = new Date().getFullYear();
+
+  // Form submit
+  function enviarFormulario(e) {
+    e.preventDefault();
+    const btn = e.target.querySelector('.formulario-enviar');
+    btn.textContent = '✅ Cadastro recebido! Vamos te chamar no WhatsApp com seu acesso antecipado.';
+    btn.style.background = '#1a9e72';
+    btn.disabled = true;
+  }
+
+  // FAQ accordion
+  document.querySelectorAll('.faq-pergunta').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.closest('.faq-item');
+      const isOpen = item.classList.contains('aberto');
+      document.querySelectorAll('.faq-item.aberto').forEach(i => i.classList.remove('aberto'));
+      if (!isOpen) item.classList.add('aberto');
+      btn.setAttribute('aria-expanded', String(!isOpen));
+    });
+  });
+
+  // Calculadora de potencial
+  function calcularPotencial() {
+    const camposErros = [
+      { id: 'calc-vagas', erroId: 'erro-vagas', msg: 'Preencha o campo vagas' },
+      { id: 'calc-valor', erroId: 'erro-valor', msg: 'Preencha o campo valor' },
+      { id: 'calc-dias',  erroId: 'erro-dias',  msg: 'Preencha o campo dias' },
+    ];
+    let valido = true;
+    const valores = {};
+    camposErros.forEach(({ id, erroId, msg }) => {
+      const input = document.getElementById(id);
+      const erro  = document.getElementById(erroId);
+      const val   = parseFloat(input.value.replace(',', '.'));
+      if (!val || val <= 0) {
+        erro.textContent = msg;
+        input.style.borderColor = 'var(--red)';
+        valido = false;
+      } else {
+        erro.textContent = '';
+        input.style.borderColor = '';
+        valores[id] = val;
+      }
+    });
+    if (!valido) return;
+    const porDia    = Math.round(valores['calc-vagas'] * valores['calc-valor']);
+    const porSemana = Math.round(porDia * valores['calc-dias']);
+    const porMes    = Math.round(porSemana * 4.3);
+    const fmt = n => n.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL', maximumFractionDigits: 0 });
+    document.getElementById('calc-valor-dia').textContent    = fmt(porDia);
+    document.getElementById('calc-valor-semana').textContent = fmt(porSemana);
+    document.getElementById('calc-valor-mes').textContent    = fmt(porMes);
+    document.getElementById('calc-resultado').classList.add('visivel');
+  }
+
+  // Carrossel do hero
+  (function() {
+    const slides = document.querySelectorAll('.carrossel-slide');
+    const pontosEl = document.getElementById('carrossel-pontos');
+    let atual = 0;
+    let timer;
+
+    slides.forEach((_, i) => {
+      const btn = document.createElement('button');
+      btn.className = 'carrossel-ponto' + (i === 0 ? ' ativo' : '');
+      btn.setAttribute('aria-label', 'Tela ' + (i + 1));
+      btn.addEventListener('click', () => { irPara(i); reiniciarTimer(); });
+      pontosEl.appendChild(btn);
+    });
+
+    function irPara(idx) {
+      const anterior = slides[atual];
+      anterior.classList.remove('ativo');
+      anterior.classList.add('saindo');
+      setTimeout(() => anterior.classList.remove('saindo'), 510);
+      pontosEl.children[atual].classList.remove('ativo');
+      atual = (idx + slides.length) % slides.length;
+      slides[atual].classList.add('ativo');
+      pontosEl.children[atual].classList.add('ativo');
+    }
+
+    function avancar() { irPara(atual + 1); }
+
+    function reiniciarTimer() {
+      clearInterval(timer);
+      timer = setInterval(avancar, 5000);
+    }
+
+    reiniciarTimer();
+
+    // Pausa ao passar o mouse
+    document.getElementById('heroi-carrossel').addEventListener('mouseenter', () => clearInterval(timer));
+    document.getElementById('heroi-carrossel').addEventListener('mouseleave', reiniciarTimer);
+  })();
+
+</script>
+</body>
+</html>
