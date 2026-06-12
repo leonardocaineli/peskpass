@@ -114,7 +114,13 @@ function calcularPotencial() {
     const anterior = slides[atual];
     anterior.classList.remove("ativo");
     anterior.classList.add("saindo");
-    setTimeout(() => anterior.classList.remove("saindo"), 510);
+    setTimeout(() => {
+      anterior.style.transition = "none";
+      anterior.classList.remove("saindo");
+      requestAnimationFrame(() =>
+        requestAnimationFrame(() => (anterior.style.transition = ""))
+      );
+    }, 510);
     pontosEl.children[atual].classList.remove("ativo");
     atual = (idx + slides.length) % slides.length;
     slides[atual].classList.add("ativo");
