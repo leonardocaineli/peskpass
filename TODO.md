@@ -13,8 +13,8 @@
 
 ### 🚀 Deploy
 
-- [ ] **Publicar no Cloudflare Pages** — Direct Upload da pasta `peskpass/` ou conectar repositório Git.
-- [ ] **Configurar domínio** — apontar `peskpass.com.br` para Cloudflare Pages via Custom domains.
+- [x] **Publicar no Cloudflare** — https://peskpass.leonardocaineli.workers.dev
+- [ ] **Configurar domínio** — apontar `peskpass.com.br` nas configurações do projeto em Settings → Domains.
 
 ---
 
@@ -23,7 +23,9 @@
 - [x] Estrutura de seções completa (Hero, Problema, Solução, Calculadora, Como funciona, Antes/depois, Funcionalidades, Relatos, FAQ, Cadastro)
 - [x] Carrossel do hero (hero-1.png a hero-9.png) com slide automático a cada 5s, pontos de navegação, pausa no hover
 - [x] Mapa do lago substituído por imagem real (mapa-lago.png) na seção Funcionalidades
-- [x] Assets organizados na pasta `/assets`
+- [x] Assets organizados em subpastas: `/assets/images/`, `/assets/css/`, `/assets/js/`
+- [x] CSS separado do HTML → `assets/css/style.css`
+- [x] JavaScript separado do HTML → `assets/js/script.js`
 - [x] Imagem placeholder da Cloudbeds removida
 - [x] Copy revisada: escassez padronizada (100 vagas), CTAs unificados, "app" → "plataforma", calculadora reenquadrada como potencial máximo, concordâncias corrigidas
 - [x] Formulário reduzido de 8 para 5 campos (Nome, Pesqueiro, Cidade, Estado, WhatsApp obrigatório)
@@ -34,5 +36,6 @@
 - [x] Depoimentos refeitos com textos reais e fonte de origem (grupo Facebook, fórum, WhatsApp)
 - [x] Preconnect para Google Fonts + display=block nos Material Symbols (sem flash de ícones como texto)
 - [x] Navegação: header com 5 itens, footer com 8 (sitemap completo)
-- [x] Hospedagem definida: Cloudflare Pages (mesmo do MEI Guardeon)
+- [x] Hospedagem: Cloudflare Workers/Pages — https://peskpass.leonardocaineli.workers.dev
+- [x] Repositório GitHub: github.com/leonardocaineli/peskpass (branch main)
 - [x] README criado

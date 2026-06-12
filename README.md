@@ -30,7 +30,7 @@ Landing page de pré-lançamento do PeskPASS, capturando cadastros de donos de p
 
 | Camada | Tecnologia | Observação |
 |---|---|---|
-| Frontend | HTML + CSS (embedded) + Vanilla JS | Single file — sem framework, sem build |
+| Frontend | HTML + CSS externo + Vanilla JS externo | Single file HTML — sem framework, sem build |
 | Tipografia | Plus Jakarta Sans + DM Sans | Google Fonts com preconnect |
 | Ícones | Material Symbols Rounded | Google Fonts — variável, sem instalação |
 | Assets | PNG (hero-1 a hero-9, mapa-lago) | Hospedados localmente em `/assets` |
@@ -42,13 +42,17 @@ Landing page de pré-lançamento do PeskPASS, capturando cadastros de donos de p
 
 ```
 peskpass/
-├── index.html        — página única (HTML + CSS + JS)
+├── index.html          — página única (HTML puro, sem CSS/JS inline)
 ├── assets/
-│   ├── hero-1.png    — telas do app para o carrossel do hero
-│   ├── hero-2.png
-│   ├── ...
-│   ├── hero-9.png
-│   └── mapa-lago.png — screenshot do mapa do lago (seção Funcionalidades)
+│   ├── css/
+│   │   └── style.css   — todos os estilos
+│   ├── js/
+│   │   └── script.js   — todo o JavaScript
+│   └── images/
+│       ├── hero-1.png  — telas do app para o carrossel do hero
+│       ├── ...
+│       ├── hero-9.png
+│       └── mapa-lago.png
 ├── README.md
 └── TODO.md
 ```
