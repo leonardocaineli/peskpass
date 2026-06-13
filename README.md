@@ -6,8 +6,8 @@
 
 | Ambiente | URL |
 |---|---|
-| Produção | https://peskpass.com.br (a publicar) |
-| Staging | https://peskpass.pages.dev (a publicar) |
+| Produção | https://peskpass.com.br (domínio a apontar) |
+| No ar | https://peskpass.pages.dev (Cloudflare Pages) |
 
 ---
 

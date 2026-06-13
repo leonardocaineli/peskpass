@@ -2,22 +2,17 @@
 
 ## Pendente
 
-### 🔴 Crítico
-
-- [ ] **Provisionar o banco D1 dos leads** — o código está pronto (front → `/api/lead` → `functions/api/lead.js` → D1). Falta rodar o setup na sua conta Cloudflare (ver README → "Formulário de cadastro"):
-  - [ ] `npx wrangler d1 create peskpass-leads` e colar o `database_id` em `wrangler.toml`
-  - [ ] `npx wrangler d1 execute peskpass-leads --remote --file=./schema.sql`
-  - [ ] Deploy (`npx wrangler pages deploy .`) ou, se Direct Upload, criar o binding `DB` no painel
+> Nenhum item crítico pendente. ✅ A captura de leads está funcionando em produção.
 
 ### 🚀 Deploy
 
-- [ ] **Configurar domínio** — apontar `peskpass.com.br` nas configurações do projeto em Settings → Domains.
+- [ ] **Configurar domínio** — apontar `peskpass.com.br` no projeto Pages em Settings → Custom domains.
 
 ## Concluído
 
 ### Otimização técnica (code review)
 
-- [x] **Formulário com envio real** — `fetch` POST para `/api/lead` (Pages Function `functions/api/lead.js`) que grava no D1, com validação no servidor e honeypot anti-spam; front com estados de enviando/sucesso/erro (falta só provisionar o banco — ver Pendente)
+- [x] **Captura de leads funcionando em produção** — `fetch` POST para `/api/lead` (Pages Function `functions/api/lead.js`) gravando no banco D1 `peskpass-leads`, com validação no servidor e honeypot anti-spam; front com estados de enviando/sucesso/erro. Testado em prod (cadastro gravado e confirmado via `SELECT`)
 - [x] **og:image + twitter:image** — imagem 1200×630 (`og-image.png`) criada com mockup real do app + `og:image:width/height/alt` e `og:site_name`
 - [x] **Favicon + apple-touch-icon** — `favicon.ico`, `favicon-32.png`, `apple-touch-icon.png` e `theme-color`
 - [x] **Imagens otimizadas** — PNG → WebP (1.270 KB → 530 KB, -59%), com `width`/`height` (elimina CLS), `decoding="async"`, `loading="lazy"` e `fetchpriority="high"` no 1º slide
@@ -48,6 +43,6 @@
 - [x] Relatos com textos reais e fonte de origem (grupo Facebook, fórum, WhatsApp)
 - [x] Preconnect para Google Fonts + display=block nos Material Symbols (sem flash de ícones como texto)
 - [x] Navegação: header com 5 itens, footer com 8 (sitemap completo)
-- [x] Hospedagem: Cloudflare Workers/Pages — https://peskpass.leonardocaineli.workers.dev
+- [x] Hospedagem: Cloudflare Pages — https://peskpass.pages.dev (deploy via `wrangler pages deploy .`)
 - [x] Repositório GitHub: github.com/leonardocaineli/peskpass (branch main)
 - [x] README criado
