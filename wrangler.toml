@@ -1,0 +1,12 @@
+name = "peskpass"
+compatibility_date = "2026-06-01"
+pages_build_output_dir = "."
+
+# Banco D1 que recebe os cadastros (binding usado em functions/api/lead.js como env.DB).
+# 1) Crie o banco:   npx wrangler d1 create peskpass-leads
+# 2) Cole o database_id retornado abaixo.
+# 3) Aplique o schema: npx wrangler d1 execute peskpass-leads --remote --file=./schema.sql
+[[d1_databases]]
+binding = "DB"
+database_name = "peskpass-leads"
+database_id = "ad40d304-a6c5-4326-a161-109d6b92a23c"

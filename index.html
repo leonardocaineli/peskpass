@@ -1,15 +1,27 @@
 <!doctype html>
 <html lang="pt-BR">
   <head>
+    <script>
+      document.documentElement.classList.add("js");
+    </script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#062a38" />
     <title>PeskPASS — Reservas para pesqueiros</title>
     <meta
       name="description"
       content="PeskPASS é a plataforma de reservas para pesqueiros brasileiros. Donos gerenciam vagas e pacotes; pescadores reservam o espaço favorito no lago com antecedência. Sem filas, sem surpresas."
     />
     <link rel="canonical" href="https://peskpass.com.br/" />
+
+    <!-- Favicons -->
+    <link rel="icon" href="assets/images/favicon.ico" sizes="any" />
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon-32.png" />
+    <link rel="apple-touch-icon" href="assets/images/apple-touch-icon.png" />
+
+    <!-- Open Graph -->
     <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="PeskPASS" />
     <meta property="og:title" content="PeskPASS — Reservas para pesqueiros" />
     <meta
       property="og:description"
@@ -17,12 +29,21 @@
     />
     <meta property="og:url" content="https://peskpass.com.br/" />
     <meta property="og:locale" content="pt_BR" />
+    <meta property="og:image" content="https://peskpass.com.br/assets/images/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="PeskPASS — plataforma de reservas para pesqueiros" />
+
+    <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="PeskPASS — Reservas para pesqueiros" />
     <meta
       name="twitter:description"
       content="Organize seu pesqueiro, venda mais e fidelize pescadores com reservas online e pagamento antecipado."
     />
+    <meta name="twitter:image" content="https://peskpass.com.br/assets/images/og-image.png" />
+
+    <!-- Structured data -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -36,6 +57,82 @@
         "inLanguage": "pt-BR"
       }
     </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "PeskPASS",
+        "url": "https://peskpass.com.br/",
+        "logo": "https://peskpass.com.br/assets/images/apple-touch-icon.png",
+        "description": "Plataforma de reservas online e pagamento antecipado para pesqueiros brasileiros.",
+        "slogan": "O pesqueiro organizado começa aqui."
+      }
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Quanto custa usar o PeskPASS?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "O cadastro é gratuito no pré-lançamento. Os 100 primeiros pesqueiros terão prioridade na definição das condições do lançamento. O modelo de monetização será anunciado antes do lançamento — quem entrar agora assegura condições especiais."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "O pescador precisa instalar algum app?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Não. O PeskPASS é um Web App — funciona direto no navegador do computador ou celular, sem download, sem cadastro complicado. O pescador acessa o link que você compartilha no seu Site, Instagram ou WhatsApp e reserva em segundos."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Como funciona o pagamento antecipado?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "O pescador paga no momento da reserva, direto pela plataforma. O valor é transferido para você conforme o cronograma de repasse. Sem maquininha na entrada, sem troco, sem inadimplência."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Funciona para pesqueiro pequeno?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Sim. O PeskPASS foi pensado para todo tamanho de operação. Você cadastra quantos lagos e vagas quiser, sem limite."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "É difícil de configurar?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "O cadastro leva cerca de 5 minutos. Você preenche as informações do pesqueiro, demarca as vagas no mapa do lago e cria seus pacotes. Nenhuma configuração técnica, nenhum programador necessário."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "E se o cliente quiser cancelar?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Você define sua própria política de cancelamento no cadastro do pesqueiro. O pescador visualiza as regras antes de confirmar a reserva — sem surpresas para nenhum dos lados."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "O pesqueiro pode receber clientes sem reserva?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Sim. O PeskPASS organiza sua operação, não a limita. Quem reservou pelo PeskPASS chega com o espaço confirmado e sem fila. Quem aparecer no pesqueiro sem reserva pode ocupar qualquer vaga ainda livre — o dono registra a ocupação na plataforma na hora, e o mapa atualiza em tempo real para nenhum outro pescador reservar o mesmo espaço."
+            }
+          }
+        ]
+      }
+    </script>
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -76,15 +173,15 @@
         </div>
       </div>
       <div class="nav-celular" id="menu-celular" aria-hidden="true">
-        <a href="#problema" onclick="fecharMenu()">Problema</a>
-        <a href="#oque" onclick="fecharMenu()">Solução</a>
-        <a href="#calculadora" onclick="fecharMenu()">Calculadora</a>
-        <a href="#como-funciona" onclick="fecharMenu()">Como funciona</a>
-        <a href="#transformacao" onclick="fecharMenu()">Transformação</a>
-        <a href="#funcionalidades" onclick="fecharMenu()">Funcionalidades</a>
-        <a href="#depoimentos" onclick="fecharMenu()">Depoimentos</a>
-        <a href="#faq" onclick="fecharMenu()">FAQ</a>
-        <a href="#cadastro" class="nav-acao" onclick="fecharMenu()">Cadastrar meu pesqueiro</a>
+        <a href="#problema">Problema</a>
+        <a href="#oque">Solução</a>
+        <a href="#calculadora">Calculadora</a>
+        <a href="#como-funciona">Como funciona</a>
+        <a href="#transformacao">Transformação</a>
+        <a href="#funcionalidades">Funcionalidades</a>
+        <a href="#depoimentos">Relatos reais</a>
+        <a href="#faq">FAQ</a>
+        <a href="#cadastro" class="nav-acao">Cadastrar meu pesqueiro</a>
       </div>
     </nav>
 
@@ -124,65 +221,103 @@
             <div class="heroi-carrossel" id="heroi-carrossel">
               <div class="carrossel-trilho">
                 <img
-                  src="assets/images/hero-1.png"
-                  alt="Tela do PeskPASS — 1"
+                  src="assets/images/hero-1.webp"
+                  alt="App PeskPASS no celular: lista de pesqueiros disponíveis para reserva"
                   class="carrossel-slide ativo"
-                  loading="eager"
+                  width="1080"
+                  height="1920"
+                  fetchpriority="high"
+                  decoding="async"
                 />
                 <img
-                  src="assets/images/hero-2.png"
-                  alt="Tela do PeskPASS — 2"
+                  src="assets/images/hero-2.webp"
+                  alt="App PeskPASS: página de um pesqueiro com informações e regras"
                   class="carrossel-slide"
+                  width="1080"
+                  height="1920"
                   loading="lazy"
+                  decoding="async"
                 />
                 <img
-                  src="assets/images/hero-3.png"
-                  alt="Tela do PeskPASS — 3"
+                  src="assets/images/hero-3.webp"
+                  alt="App PeskPASS: mapa do lago mostrando vagas livres e ocupadas"
                   class="carrossel-slide"
+                  width="1080"
+                  height="1920"
                   loading="lazy"
+                  decoding="async"
                 />
                 <img
-                  src="assets/images/hero-4.png"
-                  alt="Tela do PeskPASS — 4"
+                  src="assets/images/hero-4.webp"
+                  alt="App PeskPASS: vaga selecionada no mapa do lago"
                   class="carrossel-slide"
+                  width="1080"
+                  height="1920"
                   loading="lazy"
+                  decoding="async"
                 />
                 <img
-                  src="assets/images/hero-5.png"
-                  alt="Tela do PeskPASS — 5"
+                  src="assets/images/hero-5.webp"
+                  alt="App PeskPASS: escolha de pacotes como café da manhã e almoço"
                   class="carrossel-slide"
+                  width="1080"
+                  height="1920"
                   loading="lazy"
+                  decoding="async"
                 />
                 <img
-                  src="assets/images/hero-6.png"
-                  alt="Tela do PeskPASS — 6"
+                  src="assets/images/hero-6.webp"
+                  alt="App PeskPASS: reserva confirmada com QR Code de acesso"
                   class="carrossel-slide"
+                  width="1080"
+                  height="1920"
                   loading="lazy"
+                  decoding="async"
                 />
                 <img
-                  src="assets/images/hero-7.png"
-                  alt="Tela do PeskPASS — 7"
+                  src="assets/images/hero-7.webp"
+                  alt="Painel do PeskPASS: lista de reservas do dia do pesqueiro"
                   class="carrossel-slide"
+                  width="1080"
+                  height="1920"
                   loading="lazy"
+                  decoding="async"
                 />
                 <img
-                  src="assets/images/hero-8.png"
-                  alt="Tela do PeskPASS — 8"
+                  src="assets/images/hero-8.webp"
+                  alt="Painel do PeskPASS: detalhe de uma reserva com dados do cliente"
                   class="carrossel-slide"
+                  width="1080"
+                  height="1920"
                   loading="lazy"
+                  decoding="async"
                 />
                 <img
-                  src="assets/images/hero-9.png"
-                  alt="Tela do PeskPASS — 9"
+                  src="assets/images/hero-9.webp"
+                  alt="Painel do PeskPASS: gestão dos mapas dos lagos e das vagas"
                   class="carrossel-slide"
+                  width="1080"
+                  height="1920"
                   loading="lazy"
+                  decoding="async"
                 />
               </div>
-              <div
-                class="carrossel-pontos"
-                id="carrossel-pontos"
-                aria-label="Navegar entre telas"
-              ></div>
+              <div class="carrossel-controles">
+                <div
+                  class="carrossel-pontos"
+                  id="carrossel-pontos"
+                  role="tablist"
+                  aria-label="Navegar entre telas"
+                ></div>
+                <button
+                  class="carrossel-pausar"
+                  id="carrossel-pausar"
+                  type="button"
+                  aria-label="Pausar rotação automática das telas"
+                >
+                  <span class="material-symbols-rounded">pause</span>
+                </button>
+              </div>
             </div>
           </div>
         </div>
@@ -265,7 +400,7 @@
       <!-- O QUE É -->
       <section class="oque" id="oque">
         <div class="container revelar">
-          <p class="secao-rotulo" style="color: var(--aqua)">
+          <p class="secao-rotulo is-aqua">
             Criado por pescadores para pesqueiros
           </p>
           <h2>
@@ -315,57 +450,47 @@
             completa.
           </p>
           <div class="calc-envoltorio">
-            <form onsubmit="calcularPotencial(event)">
+            <form id="form-calc" novalidate>
               <div class="calc-grade">
                 <div class="calc-grupo">
                   <label for="calc-vagas">Número de vagas</label>
-                  <input id="calc-vagas" inputmode="numeric" required />
+                  <input id="calc-vagas" type="number" inputmode="numeric" min="1" step="1" required />
                 </div>
                 <div class="calc-grupo">
                   <label for="calc-valor">Valor da entrada (R$)</label>
-                  <input id="calc-valor" inputmode="decimal" required />
+                  <input id="calc-valor" type="number" inputmode="decimal" min="0" step="0.01" required />
                 </div>
                 <div class="calc-grupo">
                   <label for="calc-dias">Dias abertos por semana</label>
-                  <input id="calc-dias" inputmode="numeric" required />
+                  <input id="calc-dias" type="number" inputmode="numeric" min="1" max="7" step="1" required />
                 </div>
               </div>
+              <p class="formulario-erro" id="calc-erro" hidden></p>
               <button type="submit" class="calc-btn">Calcular agora</button>
             </form>
             <div class="calc-resultado" id="calc-resultado">
               <div class="calc-resultado-valores">
                 <div>
-                  <div class="calc-valor-perdido" id="calc-valor-dia" style="color: var(--aqua)">
-                    R$ 0
-                  </div>
+                  <div class="calc-valor-perdido cor-aqua" id="calc-valor-dia">R$ 0</div>
                   <div class="calc-valor-texto">por dia</div>
                 </div>
                 <div class="calc-separador">·</div>
                 <div>
-                  <div class="calc-valor-perdido" id="calc-valor-semana" style="color: var(--lake)">
-                    R$ 0
-                  </div>
+                  <div class="calc-valor-perdido cor-lake" id="calc-valor-semana">R$ 0</div>
                   <div class="calc-valor-texto">por semana</div>
                 </div>
                 <div class="calc-separador">·</div>
                 <div>
-                  <div class="calc-valor-perdido" id="calc-valor-mes" style="color: var(--water)">
-                    R$ 0
-                  </div>
+                  <div class="calc-valor-perdido cor-water" id="calc-valor-mes">R$ 0</div>
                   <div class="calc-valor-texto">por mês</div>
                 </div>
               </div>
-              <div class="calc-valor-texto" style="margin-top: 0.75rem">
+              <div class="calc-valor-texto calc-nota">
                 Esse é o potencial máximo com lotação completa. Com reservas pagas antecipadamente,
                 o PeskPASS te aproxima dele — e o dinheiro entra antes de qualquer pescador chegar.
               </div>
-              <div class="calc-cta">
-                →
-                <a
-                  href="#cadastro"
-                  style="color: var(--lake); font-weight: 600; text-decoration: none"
-                  >Quero cadastrar meu pesqueiro</a
-                >
+              <div class="calc-captura">
+                <a href="#cadastro" class="calc-captura-btn">Garantir minha vaga →</a>
               </div>
             </div>
           </div>
@@ -503,29 +628,22 @@
       <!-- FUNCIONALIDADES -->
       <section class="funcionalidades-secao" id="funcionalidades">
         <div class="container revelar">
-          <p class="secao-rotulo" style="color: var(--aqua)">Tudo que você precisa</p>
-          <h2 style="color: var(--white)">Funcionalidades</h2>
+          <p class="secao-rotulo is-aqua">Tudo que você precisa</p>
+          <h2>Funcionalidades</h2>
           <!-- Mapa do lago -->
-          <div class="mapa-envoltorio revelar" style="margin-top: 3rem">
+          <div class="mapa-envoltorio revelar">
             <img
-              src="assets/images/mapa-lago.png"
-              alt="Mapa do lago no PeskPASS"
+              src="assets/images/mapa-lago.webp"
+              alt="Mapa interativo do lago no PeskPASS, com vagas marcadas como livres, ocupadas e selecionadas"
               class="mapa-imagem"
+              width="862"
+              height="769"
+              loading="lazy"
+              decoding="async"
             />
             <div class="mapa-info">
-              <p class="secao-rotulo" style="color: var(--aqua)">Funcionalidade principal</p>
-              <p
-                style="
-                  font-family: 'Plus Jakarta Sans', sans-serif;
-                  font-size: 1.4rem;
-                  font-weight: 700;
-                  color: var(--white);
-                  margin-bottom: 1rem;
-                  line-height: 1.5;
-                "
-              >
-                Mapa do lago
-              </p>
+              <p class="secao-rotulo is-aqua">Funcionalidade principal</p>
+              <p class="mapa-titulo">Mapa do lago</p>
               <p>
                 A funcionalidade central do PeskPASS: cada pesqueiro cadastra o desenho dos seus lagos
                 com todos os espaços demarcados. O pescador vê em tempo real quais vagas estão
@@ -551,7 +669,7 @@
               </div>
             </div>
           </div>
-          <p class="secao-sub" style="margin-top: 3rem">
+          <p class="secao-sub">
             Uma plataforma completa, pensada para a realidade dos pesqueiros brasileiros.
           </p>
           <div class="funcionalidades-grade">
@@ -637,10 +755,10 @@
         </div>
       </section>
 
-      <!-- DEPOIMENTOS -->
+      <!-- RELATOS REAIS -->
       <section class="depoimentos" id="depoimentos">
         <div class="container revelar">
-          <p class="secao-rotulo">O que pescadores dizem por aí</p>
+          <p class="secao-rotulo">Relatos reais de pescadores</p>
           <h2>Os pescadores já estão<br />pedindo isso — faz tempo.</h2>
           <p class="secao-sub">
             Coletamos relatos de grupos de pesca esportiva e fóruns online. Esses não são clientes
@@ -710,7 +828,7 @@
               <button class="faq-pergunta" aria-expanded="false">
                 Quanto custa usar o PeskPASS?
                 <span class="faq-icone" aria-hidden="true"
-                  ><span class="material-symbols-rounded" style="font-size: 1.2rem">add</span></span
+                  ><span class="material-symbols-rounded">add</span></span
                 >
               </button>
               <div class="faq-resposta">
@@ -726,7 +844,7 @@
               <button class="faq-pergunta" aria-expanded="false">
                 O pescador precisa instalar algum app?
                 <span class="faq-icone" aria-hidden="true"
-                  ><span class="material-symbols-rounded" style="font-size: 1.2rem">add</span></span
+                  ><span class="material-symbols-rounded">add</span></span
                 >
               </button>
               <div class="faq-resposta">
@@ -741,7 +859,7 @@
               <button class="faq-pergunta" aria-expanded="false">
                 Como funciona o pagamento antecipado?
                 <span class="faq-icone" aria-hidden="true"
-                  ><span class="material-symbols-rounded" style="font-size: 1.2rem">add</span></span
+                  ><span class="material-symbols-rounded">add</span></span
                 >
               </button>
               <div class="faq-resposta">
@@ -756,7 +874,7 @@
               <button class="faq-pergunta" aria-expanded="false">
                 Funciona para pesqueiro pequeno?
                 <span class="faq-icone" aria-hidden="true"
-                  ><span class="material-symbols-rounded" style="font-size: 1.2rem">add</span></span
+                  ><span class="material-symbols-rounded">add</span></span
                 >
               </button>
               <div class="faq-resposta">
@@ -770,7 +888,7 @@
               <button class="faq-pergunta" aria-expanded="false">
                 É difícil de configurar?
                 <span class="faq-icone" aria-hidden="true"
-                  ><span class="material-symbols-rounded" style="font-size: 1.2rem">add</span></span
+                  ><span class="material-symbols-rounded">add</span></span
                 >
               </button>
               <div class="faq-resposta">
@@ -785,7 +903,7 @@
               <button class="faq-pergunta" aria-expanded="false">
                 E se o cliente quiser cancelar?
                 <span class="faq-icone" aria-hidden="true"
-                  ><span class="material-symbols-rounded" style="font-size: 1.2rem">add</span></span
+                  ><span class="material-symbols-rounded">add</span></span
                 >
               </button>
               <div class="faq-resposta">
@@ -800,7 +918,7 @@
               <button class="faq-pergunta" aria-expanded="false">
                 O pesqueiro pode receber clientes sem reserva?
                 <span class="faq-icone" aria-hidden="true"
-                  ><span class="material-symbols-rounded" style="font-size: 1.2rem">add</span></span
+                  ><span class="material-symbols-rounded">add</span></span
                 >
               </button>
               <div class="faq-resposta">
@@ -821,18 +939,26 @@
       <section class="formulario" id="cadastro">
         <div class="container">
           <div class="formulario-interno revelar">
-            <p class="secao-rotulo" style="color: var(--aqua); text-align: center">
+            <p class="secao-rotulo is-aqua is-centro">
               Gratuito · Vagas limitadas por região
             </p>
             <h2>Entre no pré-lançamento</h2>
             <p class="secao-sub">
-              Apenas <strong style="color: var(--aqua)">100 pesqueiros</strong> entram no
+              Apenas <strong class="cor-aqua">100 pesqueiros</strong> entram no
               pré-lançamento. Os primeiros da sua região têm prioridade e condições exclusivas no
               lançamento.
             </p>
             <div class="formulario-caixa">
-              <form onsubmit="enviarFormulario(event)">
+              <form id="form-cadastro">
                 <div class="formulario-grade">
+                  <input
+                    type="text"
+                    name="website"
+                    class="hp"
+                    tabindex="-1"
+                    autocomplete="off"
+                    aria-hidden="true"
+                  />
                   <div class="formulario-grupo">
                     <label for="nome-pesqueiro">Nome do pesqueiro</label>
                     <input type="text" id="nome-pesqueiro" name="nome_pesqueiro" required />
@@ -917,7 +1043,7 @@
             <a href="#como-funciona">Como funciona</a>
             <a href="#transformacao">Transformação</a>
             <a href="#funcionalidades">Funcionalidades</a>
-            <a href="#depoimentos">Depoimentos</a>
+            <a href="#depoimentos">Relatos</a>
             <a href="#faq">FAQ</a>
           </nav>
           <div class="rodape-coluna">
@@ -934,13 +1060,13 @@
             © <span id="ano-copyright"></span> PeskPASS. Todos os direitos reservados.
           </p>
           <p class="rodape-feito">
-            <span class="material-symbols-rounded" style="font-size: 0.85rem">water</span> Criado
+            <span class="material-symbols-rounded">water</span> Criado
             por pescadores para pesqueiros
           </p>
         </div>
       </div>
     </footer>
 
-    <script src="assets/js/script.js"></script>
+    <script src="assets/js/script.js" defer></script>
   </body>
 </html>

@@ -1,0 +1,12 @@
+# Cache local do Wrangler / Cloudflare (regenerável)
+.wrangler/
+
+# Dependências
+node_modules/
+
+# Sistema
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
