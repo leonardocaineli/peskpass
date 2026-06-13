@@ -7,6 +7,7 @@
 ### 🚀 Deploy
 
 - [ ] **Configurar domínio** — apontar `peskpass.com.br` no projeto Pages em Settings → Custom domains.
+  - [ ] **Ao apontar o domínio, trocar as URLs de `peskpass.pages.dev` → `peskpass.com.br`** em `index.html` (7 ocorrências: `canonical`, `og:url`, `og:image`, `twitter:image`, `url` dos schemas SoftwareApplication/Organization e `logo` da Organization). Hoje apontam para `pages.dev` porque o domínio ainda não está no ar (senão o preview de link, ex. WhatsApp, fica sem imagem). Depois: redeploy + re-scrape no Facebook Sharing Debugger.
 
 ## Concluído
 
