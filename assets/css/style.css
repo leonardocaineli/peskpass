@@ -1233,29 +1233,6 @@ footer {
   background: var(--aqua);
   transform: scale(1.4);
 }
-.carrossel-pausar {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 28px;
-  height: 28px;
-  border-radius: 50%;
-  border: 1px solid rgba(255, 255, 255, 0.25);
-  background: rgba(255, 255, 255, 0.08);
-  color: var(--white);
-  cursor: pointer;
-  padding: 0;
-  transition:
-    background 0.2s,
-    border-color 0.2s;
-}
-.carrossel-pausar:hover {
-  background: rgba(255, 255, 255, 0.18);
-  border-color: rgba(255, 255, 255, 0.5);
-}
-.carrossel-pausar .material-symbols-rounded {
-  font-size: 1.1rem;
-}
 
 /* ── CALCULADORA ── */
 .calculadora {

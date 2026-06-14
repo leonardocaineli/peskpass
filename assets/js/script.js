@@ -150,21 +150,14 @@ formCalc.addEventListener("submit", calcularPotencial);
   const carrossel = document.getElementById("heroi-carrossel");
   const slides = carrossel.querySelectorAll(".carrossel-slide");
   const pontosEl = document.getElementById("carrossel-pontos");
-  const btnPausar = document.getElementById("carrossel-pausar");
-  const iconePausar = btnPausar.querySelector(".material-symbols-rounded");
   let atual = 0;
-  let timer = null;
-  let pausadoManual = false;
 
   slides.forEach((_, i) => {
     const btn = document.createElement("button");
     btn.type = "button";
     btn.className = "carrossel-ponto" + (i === 0 ? " ativo" : "");
     btn.setAttribute("aria-label", "Ir para a tela " + (i + 1));
-    btn.addEventListener("click", () => {
-      irPara(i);
-      reiniciarTimer();
-    });
+    btn.addEventListener("click", () => irPara(i));
     pontosEl.appendChild(btn);
   });
 
@@ -185,37 +178,5 @@ formCalc.addEventListener("submit", calcularPotencial);
     pontosEl.children[atual].classList.add("ativo");
   }
 
-  function avancar() {
-    irPara(atual + 1);
-  }
-
-  function pararTimer() {
-    if (timer) {
-      clearInterval(timer);
-      timer = null;
-    }
-  }
-
-  function reiniciarTimer() {
-    pararTimer();
-    if (!pausadoManual) timer = setInterval(avancar, 5000);
-  }
-
-  btnPausar.addEventListener("click", () => {
-    pausadoManual = !pausadoManual;
-    iconePausar.textContent = pausadoManual ? "play_arrow" : "pause";
-    btnPausar.setAttribute(
-      "aria-label",
-      pausadoManual ? "Retomar rotação automática das telas" : "Pausar rotação automática das telas",
-    );
-    reiniciarTimer();
-  });
-
-  // Pausa ao passar o mouse ou focar via teclado; retoma ao sair (WCAG 2.2.2)
-  carrossel.addEventListener("mouseenter", pararTimer);
-  carrossel.addEventListener("mouseleave", reiniciarTimer);
-  carrossel.addEventListener("focusin", pararTimer);
-  carrossel.addEventListener("focusout", reiniciarTimer);
-
-  reiniciarTimer();
+  setInterval(() => irPara(atual + 1), 5000);
 })();
