@@ -1,4 +1,4 @@
-// Cloudflare Pages Function — POST /api/lead
+// Cloudflare Pages Function — POST /lead
 // Recebe o cadastro do pré-lançamento e grava no D1 (binding "DB").
 //
 // Binding esperado (configurado no wrangler.toml ou no painel do Cloudflare Pages):

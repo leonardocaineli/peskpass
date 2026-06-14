@@ -941,7 +941,7 @@
               lançamento.
             </p>
             <div class="formulario-caixa">
-              <form id="form-cadastro">
+              <form id="form-cadastro" novalidate>
                 <div class="formulario-grade">
                   <input
                     type="text"
@@ -1004,6 +1004,7 @@
                     <label for="whatsApp">WhatsApp</label>
                     <input type="tel" id="whatsApp" name="whatsApp" inputmode="tel" required />
                   </div>
+                  <p class="formulario-erro" id="form-erro" hidden></p>
                   <button type="submit" class="formulario-enviar">
                     Cadastrar meu pesqueiro →
                   </button>

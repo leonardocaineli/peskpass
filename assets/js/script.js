@@ -3,7 +3,7 @@
 // que grava no banco D1. Mesma origem do site — sem CORS.
 // Requer o binding D1 "DB" configurado (ver wrangler.toml / README).
 // ───────────────────────────────────────────────────────────
-const ENDPOINT_FORMULARIO = "/api/lead";
+const ENDPOINT_FORMULARIO = "/lead";
 
 // ── Menu hambúrguer ──
 const hamburguer = document.getElementById("hamburguer");
@@ -46,13 +46,30 @@ document.getElementById("ano-copyright").textContent = new Date().getFullYear();
 
 // ── Envio do formulário de cadastro ──
 const formCadastro = document.getElementById("form-cadastro");
+const formErro = document.getElementById("form-erro");
+
+function validarFormulario() {
+  const v = (name) => formCadastro.querySelector(`[name="${name}"]`).value.trim();
+  const campos = ["nome_pesqueiro", "nome_responsavel", "cidade", "estado", "email", "whatsApp"];
+  if (campos.some((c) => !v(c))) return "Preencha todos os campos obrigatórios.";
+  if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v("email"))) return "Informe um e-mail válido.";
+  return null;
+}
+
 formCadastro.addEventListener("submit", async (e) => {
   e.preventDefault();
+
+  const mensagemErro = validarFormulario();
+  if (mensagemErro) {
+    formErro.textContent = mensagemErro;
+    formErro.hidden = false;
+    return;
+  }
+  formErro.hidden = true;
+
   const caixa = formCadastro.closest(".formulario-caixa");
   const btn = formCadastro.querySelector(".formulario-enviar");
   const textoOriginal = btn.textContent;
-  const erroAntigo = formCadastro.querySelector(".formulario-erro");
-  if (erroAntigo) erroAntigo.remove();
 
   btn.disabled = true;
   btn.textContent = "Enviando…";
