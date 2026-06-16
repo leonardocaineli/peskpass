@@ -72,5 +72,23 @@ export async function onRequestPost(context) {
     return json({ ok: false, error: "Não foi possível salvar o cadastro." }, 500);
   }
 
+  // Notificação por e-mail — falha silenciosa para não impactar o cadastro
+  if (env.RESEND_API_KEY) {
+    const corpo = `Novo cadastro no PeskPASS!\n\nPesqueiro: ${lead.nome_pesqueiro}\nResponsável: ${lead.nome_responsavel}\nCidade: ${lead.cidade} / ${lead.estado}\nE-mail: ${lead.email}\nWhatsApp: ${lead.whatsapp}`;
+    fetch("https://api.resend.com/emails", {
+      method: "POST",
+      headers: {
+        "Authorization": `Bearer ${env.RESEND_API_KEY}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        from: "PeskPASS <contato@peskpass.com.br>",
+        to: ["peskpass@gmail.com"],
+        subject: `Novo cadastro: ${lead.nome_pesqueiro}`,
+        text: corpo,
+      }),
+    }).catch(() => {});
+  }
+
   return json({ ok: true });
 }
