@@ -12,7 +12,7 @@ function json(obj, status = 200) {
 }
 
 export async function onRequestPost(context) {
-  const { request, env } = context;
+  const { request, env, waitUntil } = context;
 
   // Lê tanto FormData quanto JSON
   let data = {};
@@ -75,19 +75,21 @@ export async function onRequestPost(context) {
   // Notificação por e-mail — falha silenciosa para não impactar o cadastro
   if (env.RESEND_API_KEY) {
     const corpo = `Novo cadastro no PeskPASS!\n\nPesqueiro: ${lead.nome_pesqueiro}\nResponsável: ${lead.nome_responsavel}\nCidade: ${lead.cidade} / ${lead.estado}\nE-mail: ${lead.email}\nWhatsApp: ${lead.whatsapp}`;
-    fetch("https://api.resend.com/emails", {
-      method: "POST",
-      headers: {
-        "Authorization": `Bearer ${env.RESEND_API_KEY}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        from: "PeskPASS <contato@peskpass.com.br>",
-        to: ["peskpass@gmail.com"],
-        subject: `Novo cadastro: ${lead.nome_pesqueiro}`,
-        text: corpo,
-      }),
-    }).catch(() => {});
+    waitUntil(
+      fetch("https://api.resend.com/emails", {
+        method: "POST",
+        headers: {
+          "Authorization": `Bearer ${env.RESEND_API_KEY}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          from: "PeskPASS <contato@peskpass.com.br>",
+          to: ["peskpass@gmail.com"],
+          subject: `Novo cadastro: ${lead.nome_pesqueiro}`,
+          text: corpo,
+        }),
+      }).catch(() => {})
+    );
   }
 
   return json({ ok: true });
