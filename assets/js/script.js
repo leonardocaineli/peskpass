@@ -195,5 +195,10 @@ formCalc.addEventListener("submit", calcularPotencial);
     pontosEl.children[atual].classList.add("ativo");
   }
 
-  setInterval(() => irPara(atual + 1), 5000);
+  let intervalo = setInterval(() => irPara(atual + 1), 5000);
+
+  carrossel.addEventListener("mouseenter", () => clearInterval(intervalo));
+  carrossel.addEventListener("mouseleave", () => {
+    intervalo = setInterval(() => irPara(atual + 1), 5000);
+  });
 })();

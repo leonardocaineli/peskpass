@@ -6,19 +6,20 @@
 
 ### 🚀 Deploy
 
-- [ ] **Configurar domínio** — apontar `peskpass.com.br` no projeto Pages em Settings → Custom domains.
-  - [ ] **Ao apontar o domínio, trocar as URLs de `peskpass.pages.dev` → `peskpass.com.br`** em `index.html` (7 ocorrências: `canonical`, `og:url`, `og:image`, `twitter:image`, `url` dos schemas SoftwareApplication/Organization e `logo` da Organization). Hoje apontam para `pages.dev` porque o domínio ainda não está no ar (senão o preview de link, ex. WhatsApp, fica sem imagem). Depois: redeploy + re-scrape no Facebook Sharing Debugger.
+- [x] **Configurar domínio** — `peskpass.com.br` ativo com SSL no Cloudflare Pages. URLs trocadas de `peskpass.pages.dev` → `peskpass.com.br` em `index.html` (canonical, og:url, og:image, twitter:image, schemas). Deploy feito em 14/06/2026.
 
 ## Concluído
 
 ### Otimização técnica (code review)
 
-- [x] **Captura de leads funcionando em produção** — `fetch` POST para `/api/lead` (Pages Function `functions/api/lead.js`) gravando no banco D1 `peskpass-leads`, com validação no servidor e honeypot anti-spam; front com estados de enviando/sucesso/erro. Testado em prod (cadastro gravado e confirmado via `SELECT`)
+- [x] **Captura de leads funcionando em produção** — `fetch` POST para `/lead` (Pages Function `functions/lead.js`) gravando no banco D1 `peskpass-leads`, com validação client-side + servidor, honeypot anti-spam; front com estados de enviando/sucesso/erro. Testado em prod (cadastro gravado e confirmado via `SELECT`)
+- [x] **Notificação por e-mail a cada novo cadastro** — `functions/lead.js` envia e-mail via Resend API para `peskpass@gmail.com` com dados do lead. Usa `waitUntil()` para garantir entrega. Testado em prod ✅
 - [x] **og:image + twitter:image** — imagem 1200×630 (`og-image.png`) criada com mockup real do app + `og:image:width/height/alt` e `og:site_name`
 - [x] **Favicon + apple-touch-icon** — `favicon.ico`, `favicon-32.png`, `apple-touch-icon.png` e `theme-color`
 - [x] **Imagens otimizadas** — PNG → WebP (1.270 KB → 530 KB, -59%), com `width`/`height` (elimina CLS), `decoding="async"`, `loading="lazy"` e `fetchpriority="high"` no 1º slide
 - [x] **Calculadora validada** — inputs `type="number"` com `min`/`max`/`step`, tratamento de `NaN`/negativos e mensagem de erro objetiva e legível
-- [x] **Acessibilidade** — `:focus-visible` global, `@media (prefers-reduced-motion: reduce)`, carrossel com botão de pausa + pausa ao foco do teclado (WCAG 2.2.2/2.3.3/2.4.7), `aria-expanded` sincronizado no FAQ
+- [x] **Acessibilidade** — `:focus-visible` global, `@media (prefers-reduced-motion: reduce)`, `aria-expanded` sincronizado no FAQ
+- [x] **Carrossel simplificado** — botão de pause/play e dependências removidos (listeners de mouseenter/focusin, `pausadoManual`)
 - [x] **H1 orientado a benefício + palavra-chave** — "Seu pesqueiro lotado, organizado e pago antes de abrir o portão"
 - [x] **Schema FAQPage + Organization** adicionados (além do SoftwareApplication)
 - [x] **Seção "Depoimentos" → "Relatos reais"** no nav/rodapé/seção, deixando explícito que são relatos de fóruns, não clientes
